@@ -1,0 +1,1245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="KinoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Bilet">
+          <Key>
+            <PropertyRef Name="BiletID" />
+          </Key>
+          <Property Name="BiletID" Type="int" Nullable="false" />
+          <Property Name="Cena" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TypBiletu" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opis" Type="text" />
+          <Property Name="FilmID" Type="int" />
+        </EntityType>
+        <EntityType Name="Domowienia">
+          <Key>
+            <PropertyRef Name="IdDomowienia" />
+          </Key>
+          <Property Name="IdDomowienia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BiletID" Type="int" />
+          <Property Name="TowarID" Type="int" />
+          <Property Name="Ilosc" Type="int" />
+          <Property Name="Cena" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Dostawca">
+          <Key>
+            <PropertyRef Name="DostawcaID" />
+          </Key>
+          <Property Name="DostawcaID" Type="int" Nullable="false" />
+          <Property Name="Nazwa" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefon" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="IdFaktury" />
+          </Key>
+          <Property Name="IdFaktury" Type="int" Nullable="false" />
+          <Property Name="CzyZatwierdzona" Type="bit" Nullable="false" />
+          <Property Name="Numer" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DataWystawienia" Type="date" Nullable="false" />
+          <Property Name="IdKontrahenta" Type="int" Nullable="false" />
+          <Property Name="TerminPlatnosci" Type="date" Nullable="false" />
+          <Property Name="IdSposobuPlatnosci" Type="int" Nullable="false" />
+          <Property Name="DostawcaID" Type="int" />
+        </EntityType>
+        <EntityType Name="Film">
+          <Key>
+            <PropertyRef Name="FilmID" />
+          </Key>
+          <Property Name="FilmID" Type="int" Nullable="false" />
+          <Property Name="Tytul" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CzasTrwania" Type="time" Precision="7" Nullable="false" />
+          <Property Name="Opis" Type="text" />
+          <Property Name="StatusID" Type="int" />
+          <Property Name="GatunekID" Type="int" />
+        </EntityType>
+        <EntityType Name="Gatunek">
+          <Key>
+            <PropertyRef Name="GatunekID" />
+          </Key>
+          <Property Name="GatunekID" Type="int" Nullable="false" />
+          <Property Name="Nazwa" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klient">
+          <Key>
+            <PropertyRef Name="KlientID" />
+          </Key>
+          <Property Name="KlientID" Type="int" Nullable="false" />
+          <Property Name="Imie" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Telefon" Type="varchar" MaxLength="15" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kontrahent">
+          <Key>
+            <PropertyRef Name="IdKontrahenta" />
+          </Key>
+          <Property Name="IdKontrahenta" Type="int" Nullable="false" />
+          <Property Name="Kod" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NIP" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Nazwa" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="IdRodzaju" Type="int" />
+          <Property Name="IdStatusu" Type="int" />
+          <Property Name="IdAdresu" Type="int" />
+        </EntityType>
+        <EntityType Name="Promocja">
+          <Key>
+            <PropertyRef Name="PromocjaID" />
+          </Key>
+          <Property Name="PromocjaID" Type="int" Nullable="false" />
+          <Property Name="Nazwa" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Opis" Type="text" />
+          <Property Name="Rabat" Type="decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="DataRozpoczecia" Type="date" Nullable="false" />
+          <Property Name="DataZakonczenia" Type="date" Nullable="false" />
+          <Property Name="FilmID" Type="int" />
+          <Property Name="BiletID" Type="int" />
+        </EntityType>
+        <EntityType Name="Przerwa">
+          <Key>
+            <PropertyRef Name="IdPrzerwa" />
+          </Key>
+          <Property Name="IdPrzerwa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FilmID" Type="int" />
+          <Property Name="CzasStartu" Type="int" />
+          <Property Name="CzasTrwania" Type="int" />
+          <Property Name="Opis" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Recenzja">
+          <Key>
+            <PropertyRef Name="RecenzjaID" />
+          </Key>
+          <Property Name="RecenzjaID" Type="int" Nullable="false" />
+          <Property Name="FilmID" Type="int" />
+          <Property Name="Autor" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Ocena" Type="int" Nullable="false" />
+          <Property Name="Komentarz" Type="text" />
+        </EntityType>
+        <EntityType Name="Repertuar">
+          <Key>
+            <PropertyRef Name="RepertuarID" />
+          </Key>
+          <Property Name="RepertuarID" Type="int" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="GodzinySeansow" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="FilmID" Type="int" />
+          <Property Name="SalaID" Type="int" />
+        </EntityType>
+        <EntityType Name="Rezerwacja">
+          <Key>
+            <PropertyRef Name="RezerwacjaID" />
+          </Key>
+          <Property Name="RezerwacjaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="KlientID" Type="int" />
+          <Property Name="FilmID" Type="int" />
+          <Property Name="DataRezerwacji" Type="datetime" Nullable="false" />
+          <Property Name="DataSeansu" Type="datetime" Nullable="false" />
+          <Property Name="LiczbaBiletów" Type="int" Nullable="false" />
+          <Property Name="StatusRezerwacji" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="SalaID" />
+          </Key>
+          <Property Name="SalaID" Type="int" Nullable="false" />
+          <Property Name="NumerSali" Type="int" Nullable="false" />
+          <Property Name="LiczbaMiejsc" Type="int" Nullable="false" />
+          <Property Name="Opis" Type="varchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Sala_Film">
+          <Key>
+            <PropertyRef Name="SalaID" />
+            <PropertyRef Name="FilmID" />
+          </Key>
+          <Property Name="SalaID" Type="int" Nullable="false" />
+          <Property Name="FilmID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StatusFilmu">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="Nazwa" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Opis" Type="text" />
+        </EntityType>
+        <EntityType Name="Statystyki">
+          <Key>
+            <PropertyRef Name="StatystykiID" />
+          </Key>
+          <Property Name="StatystykiID" Type="int" Nullable="false" />
+          <Property Name="Data" Type="date" Nullable="false" />
+          <Property Name="LiczbaSprzedanychBiletow" Type="int" Nullable="false" />
+          <Property Name="LacznyPrzychod" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FilmID" Type="int" />
+          <Property Name="SalaID" Type="int" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Towar">
+          <Key>
+            <PropertyRef Name="IdTowaru" />
+          </Key>
+          <Property Name="IdTowaru" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kod" Type="nchar" MaxLength="10" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
+          <Property Name="StawkaVatZakupu" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="StawkaVatSprzedazy" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Cena" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Marza" Type="decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <Association Name="FK__Bilet__FilmID__5DCAEF64">
+          <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+          <End Role="Bilet" Type="Self.Bilet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Bilet">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Faktura__IdKontr__5AEE82B9">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Film__GatunekID__52593CB8">
+          <End Role="Gatunek" Type="Self.Gatunek" Multiplicity="0..1" />
+          <End Role="Film" Type="Self.Film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gatunek">
+              <PropertyRef Name="GatunekID" />
+            </Principal>
+            <Dependent Role="Film">
+              <PropertyRef Name="GatunekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Film__StatusID__5165187F">
+          <End Role="StatusFilmu" Type="Self.StatusFilmu" Multiplicity="0..1" />
+          <End Role="Film" Type="Self.Film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusFilmu">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Film">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recenzja__FilmID__60A75C0F">
+          <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+          <End Role="Recenzja" Type="Self.Recenzja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Recenzja">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Repertuar__FilmI__6383C8BA">
+          <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+          <End Role="Repertuar" Type="Self.Repertuar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Repertuar">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Repertuar__SalaI__6477ECF3">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="0..1" />
+          <End Role="Repertuar" Type="Self.Repertuar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="SalaID" />
+            </Principal>
+            <Dependent Role="Repertuar">
+              <PropertyRef Name="SalaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sala_Film__FilmI__68487DD7">
+          <End Role="Film" Type="Self.Film" Multiplicity="1" />
+          <End Role="Sala_Film" Type="Self.Sala_Film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Sala_Film">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sala_Film__SalaI__6754599E">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="1" />
+          <End Role="Sala_Film" Type="Self.Sala_Film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="SalaID" />
+            </Principal>
+            <Dependent Role="Sala_Film">
+              <PropertyRef Name="SalaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Dostawca">
+          <End Role="Dostawca" Type="Self.Dostawca" Multiplicity="0..1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dostawca">
+              <PropertyRef Name="DostawcaID" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="DostawcaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Kontrahent">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promocja_Bilet">
+          <End Role="Bilet" Type="Self.Bilet" Multiplicity="0..1" />
+          <End Role="Promocja" Type="Self.Promocja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bilet">
+              <PropertyRef Name="BiletID" />
+            </Principal>
+            <Dependent Role="Promocja">
+              <PropertyRef Name="BiletID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promocja_Film">
+          <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+          <End Role="Promocja" Type="Self.Promocja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Promocja">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Przerwa_Film">
+          <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+          <End Role="Przerwa" Type="Self.Przerwa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Przerwa">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezerwacja_Film">
+          <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+          <End Role="Rezerwacja" Type="Self.Rezerwacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Rezerwacja">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezerwacja_Klient">
+          <End Role="Klient" Type="Self.Klient" Multiplicity="0..1" />
+          <End Role="Rezerwacja" Type="Self.Rezerwacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="KlientID" />
+            </Principal>
+            <Dependent Role="Rezerwacja">
+              <PropertyRef Name="KlientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Statystyki_Film">
+          <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+          <End Role="Statystyki" Type="Self.Statystyki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Statystyki">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Statystyki_Sala">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="0..1" />
+          <End Role="Statystyki" Type="Self.Statystyki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="SalaID" />
+            </Principal>
+            <Dependent Role="Statystyki">
+              <PropertyRef Name="SalaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="KinoModelStoreContainer">
+          <EntitySet Name="Bilet" EntityType="Self.Bilet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Domowienia" EntityType="Self.Domowienia" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Dostawca" EntityType="Self.Dostawca" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Faktura" EntityType="Self.Faktura" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Film" EntityType="Self.Film" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gatunek" EntityType="Self.Gatunek" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Klient" EntityType="Self.Klient" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kontrahent" EntityType="Self.Kontrahent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Promocja" EntityType="Self.Promocja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Przerwa" EntityType="Self.Przerwa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recenzja" EntityType="Self.Recenzja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Repertuar" EntityType="Self.Repertuar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rezerwacja" EntityType="Self.Rezerwacja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sala_Film" EntityType="Self.Sala_Film" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StatusFilmu" EntityType="Self.StatusFilmu" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Statystyki" EntityType="Self.Statystyki" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Towar" EntityType="Self.Towar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Bilet__FilmID__5DCAEF64" Association="Self.FK__Bilet__FilmID__5DCAEF64">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Bilet" EntitySet="Bilet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Faktura__IdKontr__5AEE82B9" Association="Self.FK__Faktura__IdKontr__5AEE82B9">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Film__GatunekID__52593CB8" Association="Self.FK__Film__GatunekID__52593CB8">
+            <End Role="Gatunek" EntitySet="Gatunek" />
+            <End Role="Film" EntitySet="Film" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Film__StatusID__5165187F" Association="Self.FK__Film__StatusID__5165187F">
+            <End Role="StatusFilmu" EntitySet="StatusFilmu" />
+            <End Role="Film" EntitySet="Film" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recenzja__FilmID__60A75C0F" Association="Self.FK__Recenzja__FilmID__60A75C0F">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Recenzja" EntitySet="Recenzja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Repertuar__FilmI__6383C8BA" Association="Self.FK__Repertuar__FilmI__6383C8BA">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Repertuar" EntitySet="Repertuar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Repertuar__SalaI__6477ECF3" Association="Self.FK__Repertuar__SalaI__6477ECF3">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Repertuar" EntitySet="Repertuar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sala_Film__FilmI__68487DD7" Association="Self.FK__Sala_Film__FilmI__68487DD7">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Sala_Film" EntitySet="Sala_Film" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sala_Film__SalaI__6754599E" Association="Self.FK__Sala_Film__SalaI__6754599E">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Sala_Film" EntitySet="Sala_Film" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Dostawca" Association="Self.FK_Faktura_Dostawca">
+            <End Role="Dostawca" EntitySet="Dostawca" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Kontrahent" Association="Self.FK_Faktura_Kontrahent">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promocja_Bilet" Association="Self.FK_Promocja_Bilet">
+            <End Role="Bilet" EntitySet="Bilet" />
+            <End Role="Promocja" EntitySet="Promocja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promocja_Film" Association="Self.FK_Promocja_Film">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Promocja" EntitySet="Promocja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Przerwa_Film" Association="Self.FK_Przerwa_Film">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Przerwa" EntitySet="Przerwa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezerwacja_Film" Association="Self.FK_Rezerwacja_Film">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezerwacja_Klient" Association="Self.FK_Rezerwacja_Klient">
+            <End Role="Klient" EntitySet="Klient" />
+            <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Statystyki_Film" Association="Self.FK_Statystyki_Film">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Statystyki" EntitySet="Statystyki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Statystyki_Sala" Association="Self.FK_Statystyki_Sala">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Statystyki" EntitySet="Statystyki" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="KinoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Bilet">
+          <Key>
+            <PropertyRef Name="BiletID" />
+          </Key>
+          <Property Name="BiletID" Type="Int32" Nullable="false" />
+          <Property Name="Cena" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TypBiletu" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="FilmID" Type="Int32" />
+          <NavigationProperty Name="Film" Relationship="Self.FK__Bilet__FilmID__5DCAEF64" FromRole="Bilet" ToRole="Film" />
+          <NavigationProperty Name="Promocja" Relationship="KinoModel.FK_Promocja_Bilet" FromRole="Bilet" ToRole="Promocja" />
+        </EntityType>
+        <EntityType Name="Dostawca">
+          <Key>
+            <PropertyRef Name="DostawcaID" />
+          </Key>
+          <Property Name="DostawcaID" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Faktura" Relationship="KinoModel.FK_Faktura_Dostawca" FromRole="Dostawca" ToRole="Faktura" />
+        </EntityType>
+        <EntityType Name="Faktura">
+          <Key>
+            <PropertyRef Name="IdFaktury" />
+          </Key>
+          <Property Name="IdFaktury" Type="Int32" Nullable="false" />
+          <Property Name="CzyZatwierdzona" Type="Boolean" Nullable="false" />
+          <Property Name="Numer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DataWystawienia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdKontrahenta" Type="Int32" Nullable="false" />
+          <Property Name="TerminPlatnosci" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="IdSposobuPlatnosci" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Kontrahent" Relationship="Self.FK__Faktura__IdKontr__5AEE82B9" FromRole="Faktura" ToRole="Kontrahent" />
+          <Property Name="DostawcaID" Type="Int32" />
+          <NavigationProperty Name="Dostawca" Relationship="KinoModel.FK_Faktura_Dostawca" FromRole="Faktura" ToRole="Dostawca" />
+        </EntityType>
+        <EntityType Name="Film">
+          <Key>
+            <PropertyRef Name="FilmID" />
+          </Key>
+          <Property Name="FilmID" Type="Int32" Nullable="false" />
+          <Property Name="Tytul" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CzasTrwania" Type="Time" Nullable="false" Precision="7" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="StatusID" Type="Int32" />
+          <Property Name="GatunekID" Type="Int32" />
+          <NavigationProperty Name="Bilet" Relationship="Self.FK__Bilet__FilmID__5DCAEF64" FromRole="Film" ToRole="Bilet" />
+          <NavigationProperty Name="Gatunek" Relationship="Self.FK__Film__GatunekID__52593CB8" FromRole="Film" ToRole="Gatunek" />
+          <NavigationProperty Name="StatusFilmu" Relationship="Self.FK__Film__StatusID__5165187F" FromRole="Film" ToRole="StatusFilmu" />
+          <NavigationProperty Name="Recenzja" Relationship="Self.FK__Recenzja__FilmID__60A75C0F" FromRole="Film" ToRole="Recenzja" />
+          <NavigationProperty Name="Repertuar" Relationship="Self.FK__Repertuar__FilmI__6383C8BA" FromRole="Film" ToRole="Repertuar" />
+          <NavigationProperty Name="Rezerwacja" Relationship="Self.FK_Rezerwacja_Film" FromRole="Film" ToRole="Rezerwacja" />
+          <NavigationProperty Name="Sala" Relationship="Self.Sala_Film" FromRole="Film" ToRole="Sala" />
+          <NavigationProperty Name="Promocja" Relationship="KinoModel.FK_Promocja_Film" FromRole="Film" ToRole="Promocja" />
+          <NavigationProperty Name="Przerwa" Relationship="KinoModel.FK_Przerwa_Film" FromRole="Film" ToRole="Przerwa" />
+          <NavigationProperty Name="Statystyki" Relationship="KinoModel.FK_Statystyki_Film" FromRole="Film" ToRole="Statystyki" />
+        </EntityType>
+        <EntityType Name="Gatunek">
+          <Key>
+            <PropertyRef Name="GatunekID" />
+          </Key>
+          <Property Name="GatunekID" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Film" Relationship="Self.FK__Film__GatunekID__52593CB8" FromRole="Gatunek" ToRole="Film" />
+        </EntityType>
+        <EntityType Name="Klient">
+          <Key>
+            <PropertyRef Name="KlientID" />
+          </Key>
+          <Property Name="KlientID" Type="Int32" Nullable="false" />
+          <Property Name="Imie" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Rezerwacja" Relationship="Self.FK_Rezerwacja_Klient" FromRole="Klient" ToRole="Rezerwacja" />
+        </EntityType>
+        <EntityType Name="Kontrahent">
+          <Key>
+            <PropertyRef Name="IdKontrahenta" />
+          </Key>
+          <Property Name="IdKontrahenta" Type="Int32" Nullable="false" />
+          <Property Name="Kod" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIP" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Nazwa" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IdRodzaju" Type="Int32" />
+          <Property Name="IdStatusu" Type="Int32" />
+          <Property Name="IdAdresu" Type="Int32" />
+          <NavigationProperty Name="Faktura" Relationship="Self.FK__Faktura__IdKontr__5AEE82B9" FromRole="Kontrahent" ToRole="Faktura" />
+        </EntityType>
+        <EntityType Name="Promocja">
+          <Key>
+            <PropertyRef Name="PromocjaID" />
+          </Key>
+          <Property Name="PromocjaID" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Rabat" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
+          <Property Name="DataRozpoczecia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DataZakonczenia" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FilmID" Type="Int32" />
+          <Property Name="BiletID" Type="Int32" />
+          <NavigationProperty Name="Bilet" Relationship="KinoModel.FK_Promocja_Bilet" FromRole="Promocja" ToRole="Bilet" />
+          <NavigationProperty Name="Film" Relationship="KinoModel.FK_Promocja_Film" FromRole="Promocja" ToRole="Film" />
+        </EntityType>
+        <EntityType Name="Recenzja">
+          <Key>
+            <PropertyRef Name="RecenzjaID" />
+          </Key>
+          <Property Name="RecenzjaID" Type="Int32" Nullable="false" />
+          <Property Name="FilmID" Type="Int32" />
+          <Property Name="Autor" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Ocena" Type="Int32" Nullable="false" />
+          <Property Name="Komentarz" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Film" Relationship="Self.FK__Recenzja__FilmID__60A75C0F" FromRole="Recenzja" ToRole="Film" />
+        </EntityType>
+        <EntityType Name="Repertuar">
+          <Key>
+            <PropertyRef Name="RepertuarID" />
+          </Key>
+          <Property Name="RepertuarID" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GodzinySeansow" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FilmID" Type="Int32" />
+          <Property Name="SalaID" Type="Int32" />
+          <NavigationProperty Name="Film" Relationship="Self.FK__Repertuar__FilmI__6383C8BA" FromRole="Repertuar" ToRole="Film" />
+          <NavigationProperty Name="Sala" Relationship="Self.FK__Repertuar__SalaI__6477ECF3" FromRole="Repertuar" ToRole="Sala" />
+        </EntityType>
+        <EntityType Name="Rezerwacja">
+          <Key>
+            <PropertyRef Name="RezerwacjaID" />
+          </Key>
+          <Property Name="RezerwacjaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="KlientID" Type="Int32" />
+          <Property Name="FilmID" Type="Int32" />
+          <Property Name="DataRezerwacji" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DataSeansu" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LiczbaBiletów" Type="Int32" Nullable="false" />
+          <Property Name="StatusRezerwacji" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Film" Relationship="Self.FK_Rezerwacja_Film" FromRole="Rezerwacja" ToRole="Film" />
+          <NavigationProperty Name="Klient" Relationship="Self.FK_Rezerwacja_Klient" FromRole="Rezerwacja" ToRole="Klient" />
+        </EntityType>
+        <EntityType Name="Sala">
+          <Key>
+            <PropertyRef Name="SalaID" />
+          </Key>
+          <Property Name="SalaID" Type="Int32" Nullable="false" />
+          <Property Name="NumerSali" Type="Int32" Nullable="false" />
+          <Property Name="LiczbaMiejsc" Type="Int32" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Repertuar" Relationship="Self.FK__Repertuar__SalaI__6477ECF3" FromRole="Sala" ToRole="Repertuar" />
+          <NavigationProperty Name="Film" Relationship="Self.Sala_Film" FromRole="Sala" ToRole="Film" />
+          <NavigationProperty Name="Statystyki" Relationship="KinoModel.FK_Statystyki_Sala" FromRole="Sala" ToRole="Statystyki" />
+        </EntityType>
+        <EntityType Name="StatusFilmu">
+          <Key>
+            <PropertyRef Name="StatusID" />
+          </Key>
+          <Property Name="StatusID" Type="Int32" Nullable="false" />
+          <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Film" Relationship="Self.FK__Film__StatusID__5165187F" FromRole="StatusFilmu" ToRole="Film" />
+        </EntityType>
+        <EntityType Name="Statystyki">
+          <Key>
+            <PropertyRef Name="StatystykiID" />
+          </Key>
+          <Property Name="StatystykiID" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="LiczbaSprzedanychBiletow" Type="Int32" Nullable="false" />
+          <Property Name="LacznyPrzychod" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FilmID" Type="Int32" />
+          <Property Name="SalaID" Type="Int32" />
+          <NavigationProperty Name="Film" Relationship="KinoModel.FK_Statystyki_Film" FromRole="Statystyki" ToRole="Film" />
+          <NavigationProperty Name="Sala" Relationship="KinoModel.FK_Statystyki_Sala" FromRole="Statystyki" ToRole="Sala" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__Bilet__FilmID__5DCAEF64">
+          <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+          <End Role="Bilet" Type="Self.Bilet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Bilet">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Faktura__IdKontr__5AEE82B9">
+          <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kontrahent">
+              <PropertyRef Name="IdKontrahenta" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Film__GatunekID__52593CB8">
+          <End Role="Gatunek" Type="Self.Gatunek" Multiplicity="0..1" />
+          <End Role="Film" Type="Self.Film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gatunek">
+              <PropertyRef Name="GatunekID" />
+            </Principal>
+            <Dependent Role="Film">
+              <PropertyRef Name="GatunekID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Film__StatusID__5165187F">
+          <End Role="StatusFilmu" Type="Self.StatusFilmu" Multiplicity="0..1" />
+          <End Role="Film" Type="Self.Film" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StatusFilmu">
+              <PropertyRef Name="StatusID" />
+            </Principal>
+            <Dependent Role="Film">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Recenzja__FilmID__60A75C0F">
+          <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+          <End Role="Recenzja" Type="Self.Recenzja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Recenzja">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Repertuar__FilmI__6383C8BA">
+          <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+          <End Role="Repertuar" Type="Self.Repertuar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Repertuar">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezerwacja_Film">
+          <End Role="Film" Type="Self.Film" Multiplicity="0..1" />
+          <End Role="Rezerwacja" Type="Self.Rezerwacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Rezerwacja">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Rezerwacja_Klient">
+          <End Role="Klient" Type="Self.Klient" Multiplicity="0..1" />
+          <End Role="Rezerwacja" Type="Self.Rezerwacja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="KlientID" />
+            </Principal>
+            <Dependent Role="Rezerwacja">
+              <PropertyRef Name="KlientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Repertuar__SalaI__6477ECF3">
+          <End Role="Sala" Type="Self.Sala" Multiplicity="0..1" />
+          <End Role="Repertuar" Type="Self.Repertuar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="SalaID" />
+            </Principal>
+            <Dependent Role="Repertuar">
+              <PropertyRef Name="SalaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Sala_Film">
+          <End Role="Film" Type="Self.Film" Multiplicity="*" />
+          <End Role="Sala" Type="Self.Sala" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="KinoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Bilet" EntityType="Self.Bilet" />
+          <EntitySet Name="Dostawca" EntityType="Self.Dostawca" />
+          <EntitySet Name="Faktura" EntityType="Self.Faktura" />
+          <EntitySet Name="Film" EntityType="Self.Film" />
+          <EntitySet Name="Gatunek" EntityType="Self.Gatunek" />
+          <EntitySet Name="Klient" EntityType="Self.Klient" />
+          <EntitySet Name="Kontrahent" EntityType="Self.Kontrahent" />
+          <EntitySet Name="Promocja" EntityType="Self.Promocja" />
+          <EntitySet Name="Recenzja" EntityType="Self.Recenzja" />
+          <EntitySet Name="Repertuar" EntityType="Self.Repertuar" />
+          <EntitySet Name="Rezerwacja" EntityType="Self.Rezerwacja" />
+          <EntitySet Name="Sala" EntityType="Self.Sala" />
+          <EntitySet Name="StatusFilmu" EntityType="Self.StatusFilmu" />
+          <EntitySet Name="Statystyki" EntityType="Self.Statystyki" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <AssociationSet Name="FK__Bilet__FilmID__5DCAEF64" Association="Self.FK__Bilet__FilmID__5DCAEF64">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Bilet" EntitySet="Bilet" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Faktura__IdKontr__5AEE82B9" Association="Self.FK__Faktura__IdKontr__5AEE82B9">
+            <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Film__GatunekID__52593CB8" Association="Self.FK__Film__GatunekID__52593CB8">
+            <End Role="Gatunek" EntitySet="Gatunek" />
+            <End Role="Film" EntitySet="Film" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Film__StatusID__5165187F" Association="Self.FK__Film__StatusID__5165187F">
+            <End Role="StatusFilmu" EntitySet="StatusFilmu" />
+            <End Role="Film" EntitySet="Film" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Recenzja__FilmID__60A75C0F" Association="Self.FK__Recenzja__FilmID__60A75C0F">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Recenzja" EntitySet="Recenzja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Repertuar__FilmI__6383C8BA" Association="Self.FK__Repertuar__FilmI__6383C8BA">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Repertuar" EntitySet="Repertuar" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezerwacja_Film" Association="Self.FK_Rezerwacja_Film">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Rezerwacja_Klient" Association="Self.FK_Rezerwacja_Klient">
+            <End Role="Klient" EntitySet="Klient" />
+            <End Role="Rezerwacja" EntitySet="Rezerwacja" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Repertuar__SalaI__6477ECF3" Association="Self.FK__Repertuar__SalaI__6477ECF3">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Repertuar" EntitySet="Repertuar" />
+          </AssociationSet>
+          <AssociationSet Name="Sala_Film" Association="Self.Sala_Film">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Sala" EntitySet="Sala" />
+          </AssociationSet>
+          <EntitySet Name="Towar" EntityType="KinoModel.Towar" />
+          <EntitySet Name="Domowienia" EntityType="KinoModel.Domowienia" />
+          <EntitySet Name="Przerwa" EntityType="KinoModel.Przerwa" />
+          <AssociationSet Name="FK_Promocja_Bilet" Association="KinoModel.FK_Promocja_Bilet">
+            <End Role="Bilet" EntitySet="Bilet" />
+            <End Role="Promocja" EntitySet="Promocja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_Dostawca" Association="KinoModel.FK_Faktura_Dostawca">
+            <End Role="Dostawca" EntitySet="Dostawca" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Promocja_Film" Association="KinoModel.FK_Promocja_Film">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Promocja" EntitySet="Promocja" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Przerwa_Film" Association="KinoModel.FK_Przerwa_Film">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Przerwa" EntitySet="Przerwa" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Statystyki_Film" Association="KinoModel.FK_Statystyki_Film">
+            <End Role="Film" EntitySet="Film" />
+            <End Role="Statystyki" EntitySet="Statystyki" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Statystyki_Sala" Association="KinoModel.FK_Statystyki_Sala">
+            <End Role="Sala" EntitySet="Sala" />
+            <End Role="Statystyki" EntitySet="Statystyki" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Towar">
+          <Key>
+            <PropertyRef Name="IdTowaru" />
+          </Key>
+          <Property Name="IdTowaru" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kod" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="StawkaVatZakupu" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="StawkaVatSprzedazy" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Cena" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Marza" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Domowienia">
+          <Key>
+            <PropertyRef Name="IdDomowienia" />
+          </Key>
+          <Property Name="IdDomowienia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BiletID" Type="Int32" />
+          <Property Name="TowarID" Type="Int32" />
+          <Property Name="Ilosc" Type="Int32" />
+          <Property Name="Cena" Type="Decimal" Precision="18" Scale="0" />
+        </EntityType>
+        <EntityType Name="Przerwa">
+          <Key>
+            <PropertyRef Name="IdPrzerwa" />
+          </Key>
+          <Property Name="IdPrzerwa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FilmID" Type="Int32" />
+          <Property Name="CzasStartu" Type="Int32" />
+          <Property Name="CzasTrwania" Type="Int32" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Film" Relationship="KinoModel.FK_Przerwa_Film" FromRole="Przerwa" ToRole="Film" />
+        </EntityType>
+        <Association Name="FK_Promocja_Bilet">
+          <End Type="KinoModel.Bilet" Role="Bilet" Multiplicity="0..1" />
+          <End Type="KinoModel.Promocja" Role="Promocja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bilet">
+              <PropertyRef Name="BiletID" />
+            </Principal>
+            <Dependent Role="Promocja">
+              <PropertyRef Name="BiletID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_Dostawca">
+          <End Type="KinoModel.Dostawca" Role="Dostawca" Multiplicity="0..1" />
+          <End Type="KinoModel.Faktura" Role="Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Dostawca">
+              <PropertyRef Name="DostawcaID" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="DostawcaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Promocja_Film">
+          <End Type="KinoModel.Film" Role="Film" Multiplicity="0..1" />
+          <End Type="KinoModel.Promocja" Role="Promocja" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Promocja">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Przerwa_Film">
+          <End Type="KinoModel.Film" Role="Film" Multiplicity="0..1" />
+          <End Type="KinoModel.Przerwa" Role="Przerwa" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Przerwa">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Statystyki_Film">
+          <End Type="KinoModel.Film" Role="Film" Multiplicity="0..1" />
+          <End Type="KinoModel.Statystyki" Role="Statystyki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Film">
+              <PropertyRef Name="FilmID" />
+            </Principal>
+            <Dependent Role="Statystyki">
+              <PropertyRef Name="FilmID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Statystyki_Sala">
+          <End Type="KinoModel.Sala" Role="Sala" Multiplicity="0..1" />
+          <End Type="KinoModel.Statystyki" Role="Statystyki" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Sala">
+              <PropertyRef Name="SalaID" />
+            </Principal>
+            <Dependent Role="Statystyki">
+              <PropertyRef Name="SalaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="KinoModelStoreContainer" CdmEntityContainer="KinoEntities">
+          <EntitySetMapping Name="Bilet">
+            <EntityTypeMapping TypeName="KinoModel.Bilet">
+              <MappingFragment StoreEntitySet="Bilet">
+                <ScalarProperty Name="BiletID" ColumnName="BiletID" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="TypBiletu" ColumnName="TypBiletu" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Dostawca">
+            <EntityTypeMapping TypeName="KinoModel.Dostawca">
+              <MappingFragment StoreEntitySet="Dostawca">
+                <ScalarProperty Name="DostawcaID" ColumnName="DostawcaID" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Faktura">
+            <EntityTypeMapping TypeName="KinoModel.Faktura">
+              <MappingFragment StoreEntitySet="Faktura">
+                <ScalarProperty Name="DostawcaID" ColumnName="DostawcaID" />
+                <ScalarProperty Name="IdFaktury" ColumnName="IdFaktury" />
+                <ScalarProperty Name="CzyZatwierdzona" ColumnName="CzyZatwierdzona" />
+                <ScalarProperty Name="Numer" ColumnName="Numer" />
+                <ScalarProperty Name="DataWystawienia" ColumnName="DataWystawienia" />
+                <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
+                <ScalarProperty Name="TerminPlatnosci" ColumnName="TerminPlatnosci" />
+                <ScalarProperty Name="IdSposobuPlatnosci" ColumnName="IdSposobuPlatnosci" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Film">
+            <EntityTypeMapping TypeName="KinoModel.Film">
+              <MappingFragment StoreEntitySet="Film">
+                <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+                <ScalarProperty Name="Tytul" ColumnName="Tytul" />
+                <ScalarProperty Name="CzasTrwania" ColumnName="CzasTrwania" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="GatunekID" ColumnName="GatunekID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Gatunek">
+            <EntityTypeMapping TypeName="KinoModel.Gatunek">
+              <MappingFragment StoreEntitySet="Gatunek">
+                <ScalarProperty Name="GatunekID" ColumnName="GatunekID" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Klient">
+            <EntityTypeMapping TypeName="KinoModel.Klient">
+              <MappingFragment StoreEntitySet="Klient">
+                <ScalarProperty Name="KlientID" ColumnName="KlientID" />
+                <ScalarProperty Name="Imie" ColumnName="Imie" />
+                <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kontrahent">
+            <EntityTypeMapping TypeName="KinoModel.Kontrahent">
+              <MappingFragment StoreEntitySet="Kontrahent">
+                <ScalarProperty Name="IdKontrahenta" ColumnName="IdKontrahenta" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="NIP" ColumnName="NIP" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="IdRodzaju" ColumnName="IdRodzaju" />
+                <ScalarProperty Name="IdStatusu" ColumnName="IdStatusu" />
+                <ScalarProperty Name="IdAdresu" ColumnName="IdAdresu" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Promocja">
+            <EntityTypeMapping TypeName="KinoModel.Promocja">
+              <MappingFragment StoreEntitySet="Promocja">
+                <ScalarProperty Name="BiletID" ColumnName="BiletID" />
+                <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+                <ScalarProperty Name="PromocjaID" ColumnName="PromocjaID" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Rabat" ColumnName="Rabat" />
+                <ScalarProperty Name="DataRozpoczecia" ColumnName="DataRozpoczecia" />
+                <ScalarProperty Name="DataZakonczenia" ColumnName="DataZakonczenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recenzja">
+            <EntityTypeMapping TypeName="KinoModel.Recenzja">
+              <MappingFragment StoreEntitySet="Recenzja">
+                <ScalarProperty Name="RecenzjaID" ColumnName="RecenzjaID" />
+                <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+                <ScalarProperty Name="Autor" ColumnName="Autor" />
+                <ScalarProperty Name="Ocena" ColumnName="Ocena" />
+                <ScalarProperty Name="Komentarz" ColumnName="Komentarz" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Repertuar">
+            <EntityTypeMapping TypeName="KinoModel.Repertuar">
+              <MappingFragment StoreEntitySet="Repertuar">
+                <ScalarProperty Name="RepertuarID" ColumnName="RepertuarID" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="GodzinySeansow" ColumnName="GodzinySeansow" />
+                <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+                <ScalarProperty Name="SalaID" ColumnName="SalaID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rezerwacja">
+            <EntityTypeMapping TypeName="KinoModel.Rezerwacja">
+              <MappingFragment StoreEntitySet="Rezerwacja">
+                <ScalarProperty Name="RezerwacjaID" ColumnName="RezerwacjaID" />
+                <ScalarProperty Name="KlientID" ColumnName="KlientID" />
+                <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+                <ScalarProperty Name="DataRezerwacji" ColumnName="DataRezerwacji" />
+                <ScalarProperty Name="DataSeansu" ColumnName="DataSeansu" />
+                <ScalarProperty Name="LiczbaBiletów" ColumnName="LiczbaBiletów" />
+                <ScalarProperty Name="StatusRezerwacji" ColumnName="StatusRezerwacji" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sala">
+            <EntityTypeMapping TypeName="KinoModel.Sala">
+              <MappingFragment StoreEntitySet="Sala">
+                <ScalarProperty Name="SalaID" ColumnName="SalaID" />
+                <ScalarProperty Name="NumerSali" ColumnName="NumerSali" />
+                <ScalarProperty Name="LiczbaMiejsc" ColumnName="LiczbaMiejsc" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatusFilmu">
+            <EntityTypeMapping TypeName="KinoModel.StatusFilmu">
+              <MappingFragment StoreEntitySet="StatusFilmu">
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Statystyki">
+            <EntityTypeMapping TypeName="KinoModel.Statystyki">
+              <MappingFragment StoreEntitySet="Statystyki">
+                <ScalarProperty Name="SalaID" ColumnName="SalaID" />
+                <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+                <ScalarProperty Name="StatystykiID" ColumnName="StatystykiID" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="LiczbaSprzedanychBiletow" ColumnName="LiczbaSprzedanychBiletow" />
+                <ScalarProperty Name="LacznyPrzychod" ColumnName="LacznyPrzychod" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="KinoModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Sala_Film" TypeName="KinoModel.Sala_Film" StoreEntitySet="Sala_Film">
+            <EndProperty Name="Film">
+              <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+            </EndProperty>
+            <EndProperty Name="Sala">
+              <ScalarProperty Name="SalaID" ColumnName="SalaID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <EntitySetMapping Name="Towar">
+            <EntityTypeMapping TypeName="KinoModel.Towar">
+              <MappingFragment StoreEntitySet="Towar">
+                <ScalarProperty Name="Marza" ColumnName="Marza" />
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="StawkaVatSprzedazy" ColumnName="StawkaVatSprzedazy" />
+                <ScalarProperty Name="StawkaVatZakupu" ColumnName="StawkaVatZakupu" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="Kod" ColumnName="Kod" />
+                <ScalarProperty Name="IdTowaru" ColumnName="IdTowaru" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Domowienia">
+            <EntityTypeMapping TypeName="KinoModel.Domowienia">
+              <MappingFragment StoreEntitySet="Domowienia">
+                <ScalarProperty Name="Cena" ColumnName="Cena" />
+                <ScalarProperty Name="Ilosc" ColumnName="Ilosc" />
+                <ScalarProperty Name="TowarID" ColumnName="TowarID" />
+                <ScalarProperty Name="BiletID" ColumnName="BiletID" />
+                <ScalarProperty Name="IdDomowienia" ColumnName="IdDomowienia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Przerwa">
+            <EntityTypeMapping TypeName="KinoModel.Przerwa">
+              <MappingFragment StoreEntitySet="Przerwa">
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="CzasTrwania" ColumnName="CzasTrwania" />
+                <ScalarProperty Name="CzasStartu" ColumnName="CzasStartu" />
+                <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+                <ScalarProperty Name="IdPrzerwa" ColumnName="IdPrzerwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
