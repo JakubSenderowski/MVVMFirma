@@ -8,33 +8,14 @@ using System.Windows.Input;
 
 namespace MVVMFirma.ViewModels
 {
-    public class NowyTowarViewModel : WorkspaceViewModel
+    public class NowyTowarViewModel : JedenViewModel<Towar>
     {
-        #region DB
-        private KinoEntities KinoEntities;
-        #endregion
-        #region Item
-        private Towar towar;
-        #endregion
-        #region Command
-        //Komenda, która zostanie podpięta pod przycisk Zapisz (Wywoła ona funkcję Save)
-        private BaseCommand _SaveCommand;
-        public ICommand SaveCommand
-        { 
-            get
-            {
-                if (_SaveCommand == null)
-                    _SaveCommand = new BaseCommand(() => Save());
-                return _SaveCommand;
-            }
-        }
-        #endregion
+        
         #region Constructor
         public NowyTowarViewModel()
+            :base("Towar")
         {
-            base.DisplayName = "Towar";
-            KinoEntities = new KinoEntities();
-            towar = new Towar();
+            item = new Towar();
         }
         #endregion
         #region Properties
@@ -42,10 +23,10 @@ namespace MVVMFirma.ViewModels
         public String Kod
         {
             get { 
-                return towar.Kod;
+                return item.Kod;
             }
             set { 
-            towar.Kod = value;
+            item.Kod = value;
                 OnPropertyChanged(() => Kod);
             }
         }
@@ -53,11 +34,11 @@ namespace MVVMFirma.ViewModels
         {
             get
             {
-                return towar.Nazwa;
+                return item.Nazwa;
             }
             set
             {
-                towar.Nazwa = value;
+                item.Nazwa = value;
                 OnPropertyChanged(() => Nazwa);
             }
         }
@@ -65,11 +46,11 @@ namespace MVVMFirma.ViewModels
         {
             get
             {
-                return towar.StawkaVatZakupu;
+                return item.StawkaVatZakupu;
             }
             set
             {
-                towar.StawkaVatZakupu = value;
+                item.StawkaVatZakupu = value;
                 OnPropertyChanged(() => StawkaVatZakupu);
             }
         }
@@ -77,11 +58,11 @@ namespace MVVMFirma.ViewModels
         {
             get
             {
-                return towar.StawkaVatSprzedazy;
+                return item.StawkaVatSprzedazy;
             }
             set
             {
-                towar.StawkaVatSprzedazy = value;
+                item.StawkaVatSprzedazy = value;
                 OnPropertyChanged(() => StawkaVatSprzedazy);
             }
         }
@@ -89,11 +70,11 @@ namespace MVVMFirma.ViewModels
         {
             get
             {
-                return towar.Cena;
+                return item.Cena;
             }
             set
             {
-                towar.Cena = value;
+                item.Cena = value;
                 OnPropertyChanged(() => Cena);
             }
         }
@@ -101,21 +82,22 @@ namespace MVVMFirma.ViewModels
         {
             get
             {
-                return towar.Marza;
+                return item.Marza;
             }
             set
             {
-                towar.Marza = value;
+                item.Marza = value;
                 OnPropertyChanged(() => Marza);
             }
         }
         #endregion
         #region Helpers
-        public void Save()
-        {
-            KinoEntities.Towar.Add(towar); // Dodaje towar to lokalnej kolekcji.
+        public override void Save()
+        { 
+            KinoEntities.Towar.Add(item); //Dodanie towaru do lokalnej kolekcji.
             KinoEntities.SaveChanges(); //Zapisuje zmiany do bazy danych
         }
+       
         #endregion
 
     }

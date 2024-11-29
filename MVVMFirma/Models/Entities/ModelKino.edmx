@@ -51,35 +51,28 @@
           <Key>
             <PropertyRef Name="FilmID" />
           </Key>
-          <Property Name="FilmID" Type="int" Nullable="false" />
+          <Property Name="FilmID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Tytul" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="CzasTrwania" Type="time" Precision="7" Nullable="false" />
           <Property Name="Opis" Type="text" />
           <Property Name="StatusID" Type="int" />
           <Property Name="GatunekID" Type="int" />
         </EntityType>
-        <EntityType Name="Gatunek">
-          <Key>
-            <PropertyRef Name="GatunekID" />
-          </Key>
-          <Property Name="GatunekID" Type="int" Nullable="false" />
-          <Property Name="Nazwa" Type="varchar" MaxLength="100" Nullable="false" />
-        </EntityType>
         <EntityType Name="Klient">
           <Key>
             <PropertyRef Name="KlientID" />
           </Key>
-          <Property Name="KlientID" Type="int" Nullable="false" />
-          <Property Name="Imie" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Nazwisko" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="Telefon" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="KlientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Imie" Type="varchar" MaxLength="100" />
+          <Property Name="Nazwisko" Type="varchar" MaxLength="100" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Telefon" Type="varchar" MaxLength="15" />
         </EntityType>
         <EntityType Name="Kontrahent">
           <Key>
             <PropertyRef Name="IdKontrahenta" />
           </Key>
-          <Property Name="IdKontrahenta" Type="int" Nullable="false" />
+          <Property Name="IdKontrahenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Kod" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="NIP" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Nazwa" Type="varchar" MaxLength="255" Nullable="false" />
@@ -159,14 +152,6 @@
           <Property Name="SalaID" Type="int" Nullable="false" />
           <Property Name="FilmID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="StatusFilmu">
-          <Key>
-            <PropertyRef Name="StatusID" />
-          </Key>
-          <Property Name="StatusID" Type="int" Nullable="false" />
-          <Property Name="Nazwa" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Opis" Type="text" />
-        </EntityType>
         <EntityType Name="Statystyki">
           <Key>
             <PropertyRef Name="StatystykiID" />
@@ -221,30 +206,6 @@
             </Principal>
             <Dependent Role="Faktura">
               <PropertyRef Name="IdKontrahenta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Film__GatunekID__52593CB8">
-          <End Role="Gatunek" Type="Self.Gatunek" Multiplicity="0..1" />
-          <End Role="Film" Type="Self.Film" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gatunek">
-              <PropertyRef Name="GatunekID" />
-            </Principal>
-            <Dependent Role="Film">
-              <PropertyRef Name="GatunekID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Film__StatusID__5165187F">
-          <End Role="StatusFilmu" Type="Self.StatusFilmu" Multiplicity="0..1" />
-          <End Role="Film" Type="Self.Film" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StatusFilmu">
-              <PropertyRef Name="StatusID" />
-            </Principal>
-            <Dependent Role="Film">
-              <PropertyRef Name="StatusID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -422,7 +383,6 @@
           <EntitySet Name="Dostawca" EntityType="Self.Dostawca" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Faktura" EntityType="Self.Faktura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Film" EntityType="Self.Film" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Gatunek" EntityType="Self.Gatunek" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Klient" EntityType="Self.Klient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Kontrahent" EntityType="Self.Kontrahent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Promocja" EntityType="Self.Promocja" Schema="dbo" store:Type="Tables" />
@@ -432,7 +392,6 @@
           <EntitySet Name="Rezerwacja" EntityType="Self.Rezerwacja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sala" EntityType="Self.Sala" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sala_Film" EntityType="Self.Sala_Film" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="StatusFilmu" EntityType="Self.StatusFilmu" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Statystyki" EntityType="Self.Statystyki" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Towar" EntityType="Self.Towar" Schema="dbo" store:Type="Tables" />
@@ -443,14 +402,6 @@
           <AssociationSet Name="FK__Faktura__IdKontr__5AEE82B9" Association="Self.FK__Faktura__IdKontr__5AEE82B9">
             <End Role="Kontrahent" EntitySet="Kontrahent" />
             <End Role="Faktura" EntitySet="Faktura" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Film__GatunekID__52593CB8" Association="Self.FK__Film__GatunekID__52593CB8">
-            <End Role="Gatunek" EntitySet="Gatunek" />
-            <End Role="Film" EntitySet="Film" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Film__StatusID__5165187F" Association="Self.FK__Film__StatusID__5165187F">
-            <End Role="StatusFilmu" EntitySet="StatusFilmu" />
-            <End Role="Film" EntitySet="Film" />
           </AssociationSet>
           <AssociationSet Name="FK__Recenzja__FilmID__60A75C0F" Association="Self.FK__Recenzja__FilmID__60A75C0F">
             <End Role="Film" EntitySet="Film" />
@@ -561,8 +512,6 @@
           <Property Name="StatusID" Type="Int32" />
           <Property Name="GatunekID" Type="Int32" />
           <NavigationProperty Name="Bilet" Relationship="Self.FK__Bilet__FilmID__5DCAEF64" FromRole="Film" ToRole="Bilet" />
-          <NavigationProperty Name="Gatunek" Relationship="Self.FK__Film__GatunekID__52593CB8" FromRole="Film" ToRole="Gatunek" />
-          <NavigationProperty Name="StatusFilmu" Relationship="Self.FK__Film__StatusID__5165187F" FromRole="Film" ToRole="StatusFilmu" />
           <NavigationProperty Name="Recenzja" Relationship="Self.FK__Recenzja__FilmID__60A75C0F" FromRole="Film" ToRole="Recenzja" />
           <NavigationProperty Name="Repertuar" Relationship="Self.FK__Repertuar__FilmI__6383C8BA" FromRole="Film" ToRole="Repertuar" />
           <NavigationProperty Name="Rezerwacja" Relationship="Self.FK_Rezerwacja_Film" FromRole="Film" ToRole="Rezerwacja" />
@@ -571,23 +520,15 @@
           <NavigationProperty Name="Przerwa" Relationship="KinoModel.FK_Przerwa_Film" FromRole="Film" ToRole="Przerwa" />
           <NavigationProperty Name="Statystyki" Relationship="KinoModel.FK_Statystyki_Film" FromRole="Film" ToRole="Statystyki" />
         </EntityType>
-        <EntityType Name="Gatunek">
-          <Key>
-            <PropertyRef Name="GatunekID" />
-          </Key>
-          <Property Name="GatunekID" Type="Int32" Nullable="false" />
-          <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <NavigationProperty Name="Film" Relationship="Self.FK__Film__GatunekID__52593CB8" FromRole="Gatunek" ToRole="Film" />
-        </EntityType>
         <EntityType Name="Klient">
           <Key>
             <PropertyRef Name="KlientID" />
           </Key>
           <Property Name="KlientID" Type="Int32" Nullable="false" />
-          <Property Name="Imie" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Nazwisko" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Imie" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Nazwisko" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Telefon" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Rezerwacja" Relationship="Self.FK_Rezerwacja_Klient" FromRole="Klient" ToRole="Rezerwacja" />
         </EntityType>
         <EntityType Name="Kontrahent">
@@ -667,15 +608,6 @@
           <NavigationProperty Name="Film" Relationship="Self.Sala_Film" FromRole="Sala" ToRole="Film" />
           <NavigationProperty Name="Statystyki" Relationship="KinoModel.FK_Statystyki_Sala" FromRole="Sala" ToRole="Statystyki" />
         </EntityType>
-        <EntityType Name="StatusFilmu">
-          <Key>
-            <PropertyRef Name="StatusID" />
-          </Key>
-          <Property Name="StatusID" Type="Int32" Nullable="false" />
-          <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Film" Relationship="Self.FK__Film__StatusID__5165187F" FromRole="StatusFilmu" ToRole="Film" />
-        </EntityType>
         <EntityType Name="Statystyki">
           <Key>
             <PropertyRef Name="StatystykiID" />
@@ -720,30 +652,6 @@
             </Principal>
             <Dependent Role="Faktura">
               <PropertyRef Name="IdKontrahenta" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Film__GatunekID__52593CB8">
-          <End Role="Gatunek" Type="Self.Gatunek" Multiplicity="0..1" />
-          <End Role="Film" Type="Self.Film" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Gatunek">
-              <PropertyRef Name="GatunekID" />
-            </Principal>
-            <Dependent Role="Film">
-              <PropertyRef Name="GatunekID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Film__StatusID__5165187F">
-          <End Role="StatusFilmu" Type="Self.StatusFilmu" Multiplicity="0..1" />
-          <End Role="Film" Type="Self.Film" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="StatusFilmu">
-              <PropertyRef Name="StatusID" />
-            </Principal>
-            <Dependent Role="Film">
-              <PropertyRef Name="StatusID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -816,7 +724,6 @@
           <EntitySet Name="Dostawca" EntityType="Self.Dostawca" />
           <EntitySet Name="Faktura" EntityType="Self.Faktura" />
           <EntitySet Name="Film" EntityType="Self.Film" />
-          <EntitySet Name="Gatunek" EntityType="Self.Gatunek" />
           <EntitySet Name="Klient" EntityType="Self.Klient" />
           <EntitySet Name="Kontrahent" EntityType="Self.Kontrahent" />
           <EntitySet Name="Promocja" EntityType="Self.Promocja" />
@@ -824,7 +731,6 @@
           <EntitySet Name="Repertuar" EntityType="Self.Repertuar" />
           <EntitySet Name="Rezerwacja" EntityType="Self.Rezerwacja" />
           <EntitySet Name="Sala" EntityType="Self.Sala" />
-          <EntitySet Name="StatusFilmu" EntityType="Self.StatusFilmu" />
           <EntitySet Name="Statystyki" EntityType="Self.Statystyki" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
           <AssociationSet Name="FK__Bilet__FilmID__5DCAEF64" Association="Self.FK__Bilet__FilmID__5DCAEF64">
@@ -834,14 +740,6 @@
           <AssociationSet Name="FK__Faktura__IdKontr__5AEE82B9" Association="Self.FK__Faktura__IdKontr__5AEE82B9">
             <End Role="Kontrahent" EntitySet="Kontrahent" />
             <End Role="Faktura" EntitySet="Faktura" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Film__GatunekID__52593CB8" Association="Self.FK__Film__GatunekID__52593CB8">
-            <End Role="Gatunek" EntitySet="Gatunek" />
-            <End Role="Film" EntitySet="Film" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Film__StatusID__5165187F" Association="Self.FK__Film__StatusID__5165187F">
-            <End Role="StatusFilmu" EntitySet="StatusFilmu" />
-            <End Role="Film" EntitySet="Film" />
           </AssociationSet>
           <AssociationSet Name="FK__Recenzja__FilmID__60A75C0F" Association="Self.FK__Recenzja__FilmID__60A75C0F">
             <End Role="Film" EntitySet="Film" />
@@ -1053,14 +951,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Gatunek">
-            <EntityTypeMapping TypeName="KinoModel.Gatunek">
-              <MappingFragment StoreEntitySet="Gatunek">
-                <ScalarProperty Name="GatunekID" ColumnName="GatunekID" />
-                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Klient">
             <EntityTypeMapping TypeName="KinoModel.Klient">
               <MappingFragment StoreEntitySet="Klient">
@@ -1140,15 +1030,6 @@
                 <ScalarProperty Name="SalaID" ColumnName="SalaID" />
                 <ScalarProperty Name="NumerSali" ColumnName="NumerSali" />
                 <ScalarProperty Name="LiczbaMiejsc" ColumnName="LiczbaMiejsc" />
-                <ScalarProperty Name="Opis" ColumnName="Opis" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StatusFilmu">
-            <EntityTypeMapping TypeName="KinoModel.StatusFilmu">
-              <MappingFragment StoreEntitySet="StatusFilmu">
-                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
-                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
                 <ScalarProperty Name="Opis" ColumnName="Opis" />
               </MappingFragment>
             </EntityTypeMapping>

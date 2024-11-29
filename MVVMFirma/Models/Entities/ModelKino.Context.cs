@@ -29,7 +29,6 @@ namespace MVVMFirma.Models.Entities
         public virtual DbSet<Dostawca> Dostawca { get; set; }
         public virtual DbSet<Faktura> Faktura { get; set; }
         public virtual DbSet<Film> Film { get; set; }
-        public virtual DbSet<Gatunek> Gatunek { get; set; }
         public virtual DbSet<Klient> Klient { get; set; }
         public virtual DbSet<Kontrahent> Kontrahent { get; set; }
         public virtual DbSet<Promocja> Promocja { get; set; }
@@ -37,7 +36,6 @@ namespace MVVMFirma.Models.Entities
         public virtual DbSet<Repertuar> Repertuar { get; set; }
         public virtual DbSet<Rezerwacja> Rezerwacja { get; set; }
         public virtual DbSet<Sala> Sala { get; set; }
-        public virtual DbSet<StatusFilmu> StatusFilmu { get; set; }
         public virtual DbSet<Statystyki> Statystyki { get; set; }
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<Towar> Towar { get; set; }

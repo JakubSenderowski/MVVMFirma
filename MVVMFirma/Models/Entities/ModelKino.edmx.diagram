@@ -9,7 +9,6 @@
         <EntityTypeShape EntityType="KinoModel.Dostawca" Width="1.5" PointX="0.5" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="KinoModel.Faktura" Width="1.5" PointX="11" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="KinoModel.Film" Width="1.5" PointX="3" PointY="7.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="KinoModel.Gatunek" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
         <EntityTypeShape EntityType="KinoModel.Klient" Width="1.5" PointX="6" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KinoModel.Kontrahent" Width="1.5" PointX="8.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="KinoModel.Promocja" Width="1.5" PointX="3" PointY="0.625" IsExpanded="true" />
@@ -17,13 +16,10 @@
         <EntityTypeShape EntityType="KinoModel.Repertuar" Width="1.5" PointX="7.5" PointY="12.125" IsExpanded="true" />
         <EntityTypeShape EntityType="KinoModel.Rezerwacja" Width="1.5" PointX="8.25" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="KinoModel.Sala" Width="1.5" PointX="5.25" PointY="17.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="KinoModel.StatusFilmu" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="KinoModel.Statystyki" Width="1.5" PointX="7.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="KinoModel.sysdiagrams" Width="1.5" PointX="9.75" PointY="4.75" IsExpanded="true" />
         <AssociationConnector Association="KinoModel.FK__Bilet__FilmID__5DCAEF64" ManuallyRouted="false" />
         <AssociationConnector Association="KinoModel.FK__Faktura__IdKontr__5AEE82B9" ManuallyRouted="false" />
-        <AssociationConnector Association="KinoModel.FK__Film__GatunekID__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="KinoModel.FK__Film__StatusID__5165187F" ManuallyRouted="false" />
         <AssociationConnector Association="KinoModel.FK__Recenzja__FilmID__60A75C0F" ManuallyRouted="false" />
         <AssociationConnector Association="KinoModel.FK__Repertuar__FilmI__6383C8BA" ManuallyRouted="false" />
         <AssociationConnector Association="KinoModel.FK_Rezerwacja_Film" ManuallyRouted="false" />

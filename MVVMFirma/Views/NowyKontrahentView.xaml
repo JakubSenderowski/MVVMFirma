@@ -6,7 +6,44 @@
              xmlns:local="clr-namespace:MVVMFirma.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
-        <Label>Tutaj bedzie nowy Kontrahent</Label>
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Kod -->
+        <Label Grid.Column="0" Grid.Row="0" Margin="5" VerticalAlignment="Center" Content="Kod" />
+        <TextBox Grid.Column="1" Grid.Row="0" Margin="5" Width="200" HorizontalAlignment="Left" Text="{Binding Path=Kod, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!-- NIP -->
+        <Label Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Center" Content="NIP" />
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Width="200" HorizontalAlignment="Left" Text="{Binding Path=NIP, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!-- Nazwa -->
+        <Label Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Center" Content="Nazwa" />
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="5" Width="200" HorizontalAlignment="Left" Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!-- IdRodzaju -->
+        <Label Grid.Column="0" Grid.Row="3" Margin="5" VerticalAlignment="Center" Content="IdRodzaju" />
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="5" Width="200" HorizontalAlignment="Left" Text="{Binding Path=IdRodzaju, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!-- IdStatusu -->
+        <Label Grid.Column="0" Grid.Row="4" Margin="5" VerticalAlignment="Center" Content="IdStatusu" />
+        <TextBox Grid.Column="1" Grid.Row="4" Margin="5" Width="200" HorizontalAlignment="Left" Text="{Binding Path=IdStatusu, UpdateSourceTrigger=PropertyChanged}" />
+
+        <!-- IdAdresu -->
+        <Label Grid.Column="0" Grid.Row="5" Margin="5" VerticalAlignment="Center" Content="IdAdresu" />
+        <TextBox Grid.Column="1" Grid.Row="5" Margin="5" Width="200" HorizontalAlignment="Left" Text="{Binding Path=IdAdresu, UpdateSourceTrigger=PropertyChanged}" />
     </Grid>
 </local:JedenViewBase>
