@@ -29,7 +29,7 @@
           <Key>
             <PropertyRef Name="DostawcaID" />
           </Key>
-          <Property Name="DostawcaID" Type="int" Nullable="false" />
+          <Property Name="DostawcaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nazwa" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Telefon" Type="varchar" MaxLength="15" Nullable="false" />
           <Property Name="Email" Type="varchar" MaxLength="255" Nullable="false" />
@@ -55,8 +55,6 @@
           <Property Name="Tytul" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="CzasTrwania" Type="time" Precision="7" Nullable="false" />
           <Property Name="Opis" Type="text" />
-          <Property Name="StatusID" Type="int" />
-          <Property Name="GatunekID" Type="int" />
         </EntityType>
         <EntityType Name="Klient">
           <Key>
@@ -139,7 +137,7 @@
           <Key>
             <PropertyRef Name="SalaID" />
           </Key>
-          <Property Name="SalaID" Type="int" Nullable="false" />
+          <Property Name="SalaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NumerSali" Type="int" Nullable="false" />
           <Property Name="LiczbaMiejsc" Type="int" Nullable="false" />
           <Property Name="Opis" Type="varchar" MaxLength="255" />
@@ -509,8 +507,6 @@
           <Property Name="Tytul" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CzasTrwania" Type="Time" Nullable="false" Precision="7" />
           <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="StatusID" Type="Int32" />
-          <Property Name="GatunekID" Type="Int32" />
           <NavigationProperty Name="Bilet" Relationship="Self.FK__Bilet__FilmID__5DCAEF64" FromRole="Film" ToRole="Bilet" />
           <NavigationProperty Name="Recenzja" Relationship="Self.FK__Recenzja__FilmID__60A75C0F" FromRole="Film" ToRole="Recenzja" />
           <NavigationProperty Name="Repertuar" Relationship="Self.FK__Repertuar__FilmI__6383C8BA" FromRole="Film" ToRole="Repertuar" />
@@ -946,9 +942,7 @@
                 <ScalarProperty Name="Tytul" ColumnName="Tytul" />
                 <ScalarProperty Name="CzasTrwania" ColumnName="CzasTrwania" />
                 <ScalarProperty Name="Opis" ColumnName="Opis" />
-                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
-                <ScalarProperty Name="GatunekID" ColumnName="GatunekID" />
-              </MappingFragment>
+                </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Klient">

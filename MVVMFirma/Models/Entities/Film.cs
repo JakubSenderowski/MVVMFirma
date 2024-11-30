@@ -31,8 +31,6 @@ namespace MVVMFirma.Models.Entities
         public string Tytul { get; set; }
         public System.TimeSpan CzasTrwania { get; set; }
         public string Opis { get; set; }
-        public Nullable<int> StatusID { get; set; }
-        public Nullable<int> GatunekID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Bilet> Bilet { get; set; }
