@@ -41,5 +41,6 @@ namespace MVVMFirma.Models.Entities
         public virtual DbSet<Towar> Towar { get; set; }
         public virtual DbSet<Domowienia> Domowienia { get; set; }
         public virtual DbSet<Przerwa> Przerwa { get; set; }
+        public virtual DbSet<SposobPlatnosci> SposobPlatnosci { get; set; }
     }
 }

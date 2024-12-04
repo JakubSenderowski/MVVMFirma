@@ -7,6 +7,16 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Label>Tutaj beda wszystkie promocje</Label>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID Promocji" Binding="{Binding PromocjaID}"/>
+                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"/>
+                <DataGridTextColumn Header="TypBiletu" Binding="{Binding TypBiletu}"/>
+                <DataGridTextColumn Header="Rabat" Binding="{Binding Rabat}"/>
+                <DataGridTextColumn Header="DataRozpoczecia" Binding="{Binding DataRozpoczecia}"/>
+                <DataGridTextColumn Header="DataZakonczenia" Binding="{Binding DataZakonczenia}"/>
+                <DataGridTextColumn Header="Tytul" Binding="{Binding Tytul}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

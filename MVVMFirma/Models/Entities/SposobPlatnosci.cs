@@ -12,19 +12,19 @@ namespace MVVMFirma.Models.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Faktura
+    public partial class SposobPlatnosci
     {
-        public int IdFaktury { get; set; }
-        public bool CzyZatwierdzona { get; set; }
-        public string Numer { get; set; }
-        public System.DateTime DataWystawienia { get; set; }
-        public int IdKontrahenta { get; set; }
-        public System.DateTime TerminPlatnosci { get; set; }
-        public int IdSposobuPlatnosci { get; set; }
-        public Nullable<int> DostawcaID { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public SposobPlatnosci()
+        {
+            this.Faktura = new HashSet<Faktura>();
+        }
     
-        public virtual Kontrahent Kontrahent { get; set; }
-        public virtual Dostawca Dostawca { get; set; }
-        public virtual SposobPlatnosci SposobPlatnosci { get; set; }
+        public int IdSposobuPlatnosci { get; set; }
+        public string Nazwa { get; set; }
+        public string Opis { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Faktura> Faktura { get; set; }
     }
 }

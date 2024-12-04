@@ -7,6 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Label>Tutaj beda wszystkie bilety</Label>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID Biletu" Binding="{Binding BiletID}"/>
+                <DataGridTextColumn Header="Cena" Binding="{Binding Cena}"/>
+                <DataGridTextColumn Header="TypBiletu" Binding="{Binding TypBiletu}"/>
+                <DataGridTextColumn Header="Opis" Binding="{Binding Opis}"/>
+                <DataGridTextColumn Header="Tytuł Filmu" Binding="{Binding FilmTytul}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

@@ -38,7 +38,7 @@
           <Key>
             <PropertyRef Name="IdFaktury" />
           </Key>
-          <Property Name="IdFaktury" Type="int" Nullable="false" />
+          <Property Name="IdFaktury" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CzyZatwierdzona" Type="bit" Nullable="false" />
           <Property Name="Numer" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="DataWystawienia" Type="date" Nullable="false" />
@@ -82,7 +82,7 @@
           <Key>
             <PropertyRef Name="PromocjaID" />
           </Key>
-          <Property Name="PromocjaID" Type="int" Nullable="false" />
+          <Property Name="PromocjaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nazwa" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="Opis" Type="text" />
           <Property Name="Rabat" Type="decimal" Precision="5" Scale="2" Nullable="false" />
@@ -149,6 +149,14 @@
           </Key>
           <Property Name="SalaID" Type="int" Nullable="false" />
           <Property Name="FilmID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SposobPlatnosci">
+          <Key>
+            <PropertyRef Name="IdSposobuPlatnosci" />
+          </Key>
+          <Property Name="IdSposobuPlatnosci" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nazwa" Type="nvarchar" MaxLength="50" />
+          <Property Name="Opis" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Statystyki">
           <Key>
@@ -267,18 +275,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Faktura_Dostawca">
-          <End Role="Dostawca" Type="Self.Dostawca" Multiplicity="0..1" />
-          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Dostawca">
-              <PropertyRef Name="DostawcaID" />
-            </Principal>
-            <Dependent Role="Faktura">
-              <PropertyRef Name="DostawcaID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Faktura_Kontrahent">
           <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="1" />
           <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
@@ -288,6 +284,18 @@
             </Principal>
             <Dependent Role="Faktura">
               <PropertyRef Name="IdKontrahenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Faktura_SposobPlatnosci">
+          <End Role="SposobPlatnosci" Type="Self.SposobPlatnosci" Multiplicity="1" />
+          <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SposobPlatnosci">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdSposobuPlatnosci" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -390,6 +398,7 @@
           <EntitySet Name="Rezerwacja" EntityType="Self.Rezerwacja" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sala" EntityType="Self.Sala" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Sala_Film" EntityType="Self.Sala_Film" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SposobPlatnosci" EntityType="Self.SposobPlatnosci" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Statystyki" EntityType="Self.Statystyki" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Towar" EntityType="Self.Towar" Schema="dbo" store:Type="Tables" />
@@ -421,12 +430,12 @@
             <End Role="Sala" EntitySet="Sala" />
             <End Role="Sala_Film" EntitySet="Sala_Film" />
           </AssociationSet>
-          <AssociationSet Name="FK_Faktura_Dostawca" Association="Self.FK_Faktura_Dostawca">
-            <End Role="Dostawca" EntitySet="Dostawca" />
-            <End Role="Faktura" EntitySet="Faktura" />
-          </AssociationSet>
           <AssociationSet Name="FK_Faktura_Kontrahent" Association="Self.FK_Faktura_Kontrahent">
             <End Role="Kontrahent" EntitySet="Kontrahent" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Faktura_SposobPlatnosci" Association="Self.FK_Faktura_SposobPlatnosci">
+            <End Role="SposobPlatnosci" EntitySet="SposobPlatnosci" />
             <End Role="Faktura" EntitySet="Faktura" />
           </AssociationSet>
           <AssociationSet Name="FK_Promocja_Bilet" Association="Self.FK_Promocja_Bilet">
@@ -498,6 +507,7 @@
           <NavigationProperty Name="Kontrahent" Relationship="Self.FK__Faktura__IdKontr__5AEE82B9" FromRole="Faktura" ToRole="Kontrahent" />
           <Property Name="DostawcaID" Type="Int32" />
           <NavigationProperty Name="Dostawca" Relationship="KinoModel.FK_Faktura_Dostawca" FromRole="Faktura" ToRole="Dostawca" />
+          <NavigationProperty Name="SposobPlatnosci" Relationship="KinoModel.FK_Faktura_SposobPlatnosci" FromRole="Faktura" ToRole="SposobPlatnosci" />
         </EntityType>
         <EntityType Name="Film">
           <Key>
@@ -788,6 +798,11 @@
             <End Role="Sala" EntitySet="Sala" />
             <End Role="Statystyki" EntitySet="Statystyki" />
           </AssociationSet>
+          <EntitySet Name="SposobPlatnosci" EntityType="KinoModel.SposobPlatnosci" />
+          <AssociationSet Name="FK_Faktura_SposobPlatnosci" Association="KinoModel.FK_Faktura_SposobPlatnosci">
+            <End Role="SposobPlatnosci" EntitySet="SposobPlatnosci" />
+            <End Role="Faktura" EntitySet="Faktura" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Towar">
           <Key>
@@ -891,6 +906,27 @@
             </Principal>
             <Dependent Role="Statystyki">
               <PropertyRef Name="SalaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SposobPlatnosci">
+          <Key>
+            <PropertyRef Name="IdSposobuPlatnosci" />
+          </Key>
+          <Property Name="IdSposobuPlatnosci" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Opis" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Faktura" Relationship="KinoModel.FK_Faktura_SposobPlatnosci" FromRole="SposobPlatnosci" ToRole="Faktura" />
+        </EntityType>
+        <Association Name="FK_Faktura_SposobPlatnosci">
+          <End Type="KinoModel.SposobPlatnosci" Role="SposobPlatnosci" Multiplicity="1" />
+          <End Type="KinoModel.Faktura" Role="Faktura" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SposobPlatnosci">
+              <PropertyRef Name="IdSposobuPlatnosci" />
+            </Principal>
+            <Dependent Role="Faktura">
+              <PropertyRef Name="IdSposobuPlatnosci" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1091,6 +1127,15 @@
                 <ScalarProperty Name="CzasStartu" ColumnName="CzasStartu" />
                 <ScalarProperty Name="FilmID" ColumnName="FilmID" />
                 <ScalarProperty Name="IdPrzerwa" ColumnName="IdPrzerwa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SposobPlatnosci">
+            <EntityTypeMapping TypeName="KinoModel.SposobPlatnosci">
+              <MappingFragment StoreEntitySet="SposobPlatnosci">
+                <ScalarProperty Name="Opis" ColumnName="Opis" />
+                <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+                <ScalarProperty Name="IdSposobuPlatnosci" ColumnName="IdSposobuPlatnosci" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
