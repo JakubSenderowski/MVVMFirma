@@ -18,6 +18,7 @@ namespace MVVMFirma.Models.Entities
         public Bilet()
         {
             this.Promocja = new HashSet<Promocja>();
+            this.Domowienia = new HashSet<Domowienia>();
         }
     
         public int BiletID { get; set; }
@@ -29,5 +30,7 @@ namespace MVVMFirma.Models.Entities
         public virtual Film Film { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Promocja> Promocja { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Domowienia> Domowienia { get; set; }
     }
 }

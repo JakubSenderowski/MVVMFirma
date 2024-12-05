@@ -275,6 +275,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Domowienia_Bilet">
+          <End Role="Bilet" Type="Self.Bilet" Multiplicity="0..1" />
+          <End Role="Domowienia" Type="Self.Domowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bilet">
+              <PropertyRef Name="BiletID" />
+            </Principal>
+            <Dependent Role="Domowienia">
+              <PropertyRef Name="BiletID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Domowienia_Towar">
+          <End Role="Towar" Type="Self.Towar" Multiplicity="0..1" />
+          <End Role="Domowienia" Type="Self.Domowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="Domowienia">
+              <PropertyRef Name="TowarID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Faktura_Kontrahent">
           <End Role="Kontrahent" Type="Self.Kontrahent" Multiplicity="1" />
           <End Role="Faktura" Type="Self.Faktura" Multiplicity="*" />
@@ -430,6 +454,14 @@
             <End Role="Sala" EntitySet="Sala" />
             <End Role="Sala_Film" EntitySet="Sala_Film" />
           </AssociationSet>
+          <AssociationSet Name="FK_Domowienia_Bilet" Association="Self.FK_Domowienia_Bilet">
+            <End Role="Bilet" EntitySet="Bilet" />
+            <End Role="Domowienia" EntitySet="Domowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Domowienia_Towar" Association="Self.FK_Domowienia_Towar">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Domowienia" EntitySet="Domowienia" />
+          </AssociationSet>
           <AssociationSet Name="FK_Faktura_Kontrahent" Association="Self.FK_Faktura_Kontrahent">
             <End Role="Kontrahent" EntitySet="Kontrahent" />
             <End Role="Faktura" EntitySet="Faktura" />
@@ -482,6 +514,7 @@
           <Property Name="FilmID" Type="Int32" />
           <NavigationProperty Name="Film" Relationship="Self.FK__Bilet__FilmID__5DCAEF64" FromRole="Bilet" ToRole="Film" />
           <NavigationProperty Name="Promocja" Relationship="KinoModel.FK_Promocja_Bilet" FromRole="Bilet" ToRole="Promocja" />
+          <NavigationProperty Name="Domowienia" Relationship="KinoModel.FK_Domowienia_Bilet" FromRole="Bilet" ToRole="Domowienia" />
         </EntityType>
         <EntityType Name="Dostawca">
           <Key>
@@ -803,6 +836,14 @@
             <End Role="SposobPlatnosci" EntitySet="SposobPlatnosci" />
             <End Role="Faktura" EntitySet="Faktura" />
           </AssociationSet>
+          <AssociationSet Name="FK_Domowienia_Bilet" Association="KinoModel.FK_Domowienia_Bilet">
+            <End Role="Bilet" EntitySet="Bilet" />
+            <End Role="Domowienia" EntitySet="Domowienia" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Domowienia_Towar" Association="KinoModel.FK_Domowienia_Towar">
+            <End Role="Towar" EntitySet="Towar" />
+            <End Role="Domowienia" EntitySet="Domowienia" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Towar">
           <Key>
@@ -815,6 +856,7 @@
           <Property Name="StawkaVatSprzedazy" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Cena" Type="Decimal" Precision="18" Scale="0" />
           <Property Name="Marza" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Domowienia" Relationship="KinoModel.FK_Domowienia_Towar" FromRole="Towar" ToRole="Domowienia" />
         </EntityType>
         <EntityType Name="Domowienia">
           <Key>
@@ -825,6 +867,8 @@
           <Property Name="TowarID" Type="Int32" />
           <Property Name="Ilosc" Type="Int32" />
           <Property Name="Cena" Type="Decimal" Precision="18" Scale="0" />
+          <NavigationProperty Name="Bilet" Relationship="KinoModel.FK_Domowienia_Bilet" FromRole="Domowienia" ToRole="Bilet" />
+          <NavigationProperty Name="Towar" Relationship="KinoModel.FK_Domowienia_Towar" FromRole="Domowienia" ToRole="Towar" />
         </EntityType>
         <EntityType Name="Przerwa">
           <Key>
@@ -927,6 +971,30 @@
             </Principal>
             <Dependent Role="Faktura">
               <PropertyRef Name="IdSposobuPlatnosci" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Domowienia_Bilet">
+          <End Type="KinoModel.Bilet" Role="Bilet" Multiplicity="0..1" />
+          <End Type="KinoModel.Domowienia" Role="Domowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Bilet">
+              <PropertyRef Name="BiletID" />
+            </Principal>
+            <Dependent Role="Domowienia">
+              <PropertyRef Name="BiletID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Domowienia_Towar">
+          <End Type="KinoModel.Towar" Role="Towar" Multiplicity="0..1" />
+          <End Type="KinoModel.Domowienia" Role="Domowienia" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Towar">
+              <PropertyRef Name="IdTowaru" />
+            </Principal>
+            <Dependent Role="Domowienia">
+              <PropertyRef Name="TowarID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>

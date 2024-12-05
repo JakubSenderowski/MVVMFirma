@@ -14,6 +14,12 @@ namespace MVVMFirma.Models.Entities
     
     public partial class Towar
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Towar()
+        {
+            this.Domowienia = new HashSet<Domowienia>();
+        }
+    
         public int IdTowaru { get; set; }
         public string Kod { get; set; }
         public string Nazwa { get; set; }
@@ -21,5 +27,8 @@ namespace MVVMFirma.Models.Entities
         public Nullable<decimal> StawkaVatSprzedazy { get; set; }
         public Nullable<decimal> Cena { get; set; }
         public Nullable<decimal> Marza { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Domowienia> Domowienia { get; set; }
     }
 }

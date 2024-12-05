@@ -19,5 +19,8 @@ namespace MVVMFirma.Models.Entities
         public Nullable<int> TowarID { get; set; }
         public Nullable<int> Ilosc { get; set; }
         public Nullable<decimal> Cena { get; set; }
+    
+        public virtual Bilet Bilet { get; set; }
+        public virtual Towar Towar { get; set; }
     }
 }

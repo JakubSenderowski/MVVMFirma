@@ -73,6 +73,7 @@
     </Compile>
     <Compile Include="Helper\BaseCommand.cs" />
     <Compile Include="Models\EntitiesForView\BiletForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\DomowieniaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PromocjaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\RecenzjaForAllView.cs" />
