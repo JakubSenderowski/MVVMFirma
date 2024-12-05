@@ -81,12 +81,6 @@
     <DataTemplate DataType="{x:Type vm:WszystkieStatystykiViewModel}">
         <vw:WszystkieStatystykiView/>
     </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:NowaPrzerwaViewModel}">
-        <vw:NowaPrzerwaView/>
-    </DataTemplate>
-    <DataTemplate DataType="{x:Type vm:WszystkiePrzerwyViewModel}">
-        <vw:WszystkiePrzerwyView/>
-    </DataTemplate>
     <DataTemplate DataType="{x:Type vm:NoweDomowienieViewModel}">
         <vw:NoweDomowienieView/>
     </DataTemplate>

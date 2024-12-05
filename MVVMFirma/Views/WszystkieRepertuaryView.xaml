@@ -7,6 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Label>Tutaj beda wszystkie repertuary</Label>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID Repertuaru" Binding="{Binding RepertuarID}"/>
+                <DataGridTextColumn Header="Data" Binding="{Binding Data}"/>
+                <DataGridTextColumn Header="Godziny Seansow" Binding="{Binding GodzinySeansow}"/>
+                <DataGridTextColumn Header="Numer Sali" Binding="{Binding NumerSali}"/>
+                <DataGridTextColumn Header="Tytuł Filmu" Binding="{Binding TytulFilmu}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

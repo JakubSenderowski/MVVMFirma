@@ -105,7 +105,7 @@
           <Key>
             <PropertyRef Name="RecenzjaID" />
           </Key>
-          <Property Name="RecenzjaID" Type="int" Nullable="false" />
+          <Property Name="RecenzjaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="FilmID" Type="int" />
           <Property Name="Autor" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="Ocena" Type="int" Nullable="false" />
@@ -115,7 +115,7 @@
           <Key>
             <PropertyRef Name="RepertuarID" />
           </Key>
-          <Property Name="RepertuarID" Type="int" Nullable="false" />
+          <Property Name="RepertuarID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Data" Type="date" Nullable="false" />
           <Property Name="GodzinySeansow" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="FilmID" Type="int" />

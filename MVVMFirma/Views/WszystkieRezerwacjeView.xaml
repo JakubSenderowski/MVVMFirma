@@ -7,6 +7,18 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Label>Tutaj będą wszystkie rezerwacje.</Label>
+        <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding List}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID Rezerwacji" Binding="{Binding RezerwacjaID}"/>
+                <DataGridTextColumn Header="Imie Klienta" Binding="{Binding KlientImie}"/>
+                <DataGridTextColumn Header="Nazwisko Klienta" Binding="{Binding KlientNazwisko}"/>
+                <DataGridTextColumn Header="Email Klienta" Binding="{Binding KlientMail}"/>
+                <DataGridTextColumn Header="Telefon Klienta" Binding="{Binding KlientNumer}"/>
+                <DataGridTextColumn Header="Data Rezerwacji" Binding="{Binding DataRezerwacji}"/>
+                <DataGridTextColumn Header="Data Seansu" Binding="{Binding DataSeansu}"/>
+                <DataGridTextColumn Header="Liczba zakupionych biletów" Binding="{Binding LiczbaBiletow}"/>
+                <DataGridTextColumn Header="Status Rezerwacji" Binding="{Binding StatusRezerwacji}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </local:WszystkieViewBase>

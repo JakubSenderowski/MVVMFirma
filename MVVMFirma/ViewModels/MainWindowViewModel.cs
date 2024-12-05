@@ -115,12 +115,6 @@ namespace MVVMFirma.ViewModels
                     "Statystyki",
                     new BaseCommand(() => this.ShowAllStatystyki())),
                   new CommandViewModel(
-                    "Przerwa",
-                    new BaseCommand(() => this.CreatePrzerwa())),
-                  new CommandViewModel(
-                    "Przerwy",
-                    new BaseCommand(() => this.ShowAllPrzerwy())),
-                  new CommandViewModel(
                     "Domowienie",
                     new BaseCommand(() => this.CreateDomowienie())),
                   new CommandViewModel(
@@ -173,12 +167,6 @@ namespace MVVMFirma.ViewModels
         private void CreateDomowienie()
         {
             NoweDomowienieViewModel workspace = new NoweDomowienieViewModel();
-            this.Workspaces.Add(workspace);
-            this.SetActiveWorkspace(workspace);
-        }
-        private void CreatePrzerwa()
-        {
-            NowaPrzerwaViewModel workspace = new NowaPrzerwaViewModel();
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
         }
@@ -275,19 +263,6 @@ namespace MVVMFirma.ViewModels
             if (workspace == null)
             {
                 workspace = new WszystkieDomowieniaViewModel();
-                this.Workspaces.Add(workspace);
-            }
-
-            this.SetActiveWorkspace(workspace);
-        }
-        private void ShowAllPrzerwy()
-        {
-            WszystkiePrzerwyViewModel workspace =
-                this.Workspaces.FirstOrDefault(vm => vm is WszystkiePrzerwyViewModel)
-                as WszystkiePrzerwyViewModel;
-            if (workspace == null)
-            {
-                workspace = new WszystkiePrzerwyViewModel();
                 this.Workspaces.Add(workspace);
             }
 

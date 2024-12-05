@@ -75,6 +75,10 @@
     <Compile Include="Models\EntitiesForView\BiletForAllView.cs" />
     <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\PromocjaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\RecenzjaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\RepertuarForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\RezerwacjaForAllView.cs" />
+    <Compile Include="Models\EntitiesForView\StatystykaForAllView.cs" />
     <Compile Include="Models\Entities\Bilet.cs">
       <DependentUpon>ModelKino.tt</DependentUpon>
     </Compile>
@@ -147,7 +151,6 @@
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\NowaFakturaViewModel.cs" />
     <Compile Include="ViewModels\NowaPromocjaViewModel.cs" />
-    <Compile Include="ViewModels\NowaPrzerwaViewModel.cs" />
     <Compile Include="ViewModels\NowaRecenzjaViewModel.cs" />
     <Compile Include="ViewModels\NowaRezerwacjaViewModel.cs" />
     <Compile Include="ViewModels\NowaSalaViewModel.cs" />
@@ -169,7 +172,6 @@
     <Compile Include="ViewModels\WszystkieFakturyViewModel.cs" />
     <Compile Include="ViewModels\WszystkieFilmyViewModel.cs" />
     <Compile Include="ViewModels\WszystkiePromocjeViewModel.cs" />
-    <Compile Include="ViewModels\WszystkiePrzerwyViewModel.cs" />
     <Compile Include="ViewModels\WszystkieRecenzjeViewModel.cs" />
     <Compile Include="ViewModels\WszystkieRepertuaryViewModel.cs" />
     <Compile Include="ViewModels\WszystkieRezerwacjeViewModel.cs" />
@@ -186,9 +188,6 @@
     </Compile>
     <Compile Include="Views\NowaPromocjaView.xaml.cs">
       <DependentUpon>NowaPromocjaView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\NowaPrzerwaView.xaml.cs">
-      <DependentUpon>NowaPrzerwaView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\NowaRecenzjaView.xaml.cs">
       <DependentUpon>NowaRecenzjaView.xaml</DependentUpon>
@@ -249,9 +248,6 @@
     </Compile>
     <Compile Include="Views\WszystkiePromocjeView.xaml.cs">
       <DependentUpon>WszystkiePromocjeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\WszystkiePrzerwyView.xaml.cs">
-      <DependentUpon>WszystkiePrzerwyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszystkieRecenzjeView.xaml.cs">
       <DependentUpon>WszystkieRecenzjeView.xaml</DependentUpon>
@@ -324,10 +320,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NowaPromocjaView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\NowaPrzerwaView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -408,10 +400,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\WszystkiePromocjeView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\WszystkiePrzerwyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
