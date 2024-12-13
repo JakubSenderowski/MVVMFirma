@@ -1,4 +1,7 @@
-﻿using System;
+﻿using MVVMFirma.Models.BusinessLogic;
+using MVVMFirma.Models.Entities;
+using MVVMFirma.Models.EntitiesForView;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,10 +9,123 @@ using System.Threading.Tasks;
 
 namespace MVVMFirma.ViewModels
 {
-    public class NowaFakturaViewModel:WorkspaceViewModel // Ponieważ wszystkie zakładki dziedziczą po WorkSpaceVM.
+    public class NowaFakturaViewModel:JedenViewModel<Faktura>
     {
-        public NowaFakturaViewModel() {
-            base.DisplayName = "Faktura";
+        #region Konstruktor
+        public NowaFakturaViewModel()
+           : base("Faktura")
+        {
+            item = new Faktura();
         }
+        #endregion
+        #region Pola
+        //Dla każdego pola na interface dodajmy properties.
+        public String Numer
+        {
+            get
+            {
+                return item.Numer;
+            }
+            set
+            {
+                item.Numer = value;
+                OnPropertyChanged(() => Numer);
+            }
+        }
+
+        public DateTime DataWystawienia
+        {
+            get
+            {
+                return item.DataWystawienia;
+            }
+            set
+            {
+                item.DataWystawienia = value;
+                OnPropertyChanged(() => DataWystawienia);
+            }
+        }
+        public int IdKontrahenta
+        {
+            get
+            {
+                return item.IdKontrahenta;
+            }
+            set
+            {
+                item.IdKontrahenta = value;
+                OnPropertyChanged(() => IdKontrahenta);
+            }
+        }
+        public DateTime TerminPlatnosci
+        {
+            get
+            {
+                return item.TerminPlatnosci;
+            }
+            set
+            {
+                item.TerminPlatnosci = value;
+                OnPropertyChanged(() => TerminPlatnosci);
+            }
+        }
+        public int IdSposobuPlatnosci
+        {
+            get
+            {
+                return item.IdSposobuPlatnosci;
+            }
+            set
+            {
+                item.IdSposobuPlatnosci = value;
+                OnPropertyChanged(() => IdSposobuPlatnosci);
+            }
+        }
+        public int? DostawcaID
+        {
+            get
+            {
+                return item.DostawcaID;
+            }
+            set
+            {
+                item.DostawcaID = value;
+                OnPropertyChanged(() => DostawcaID);
+            }
+        }
+        #endregion
+        #region WłaściwościDlaComboBoxów
+        public IQueryable<KeyAndValue> KontrahenciItems 
+        { 
+            get
+            {
+                return new KontrahenciB(KinoEntities).GetKontrahenciKeyAndValueItems();
+            }
+        }
+        public IQueryable<KeyAndValue> SposobyPlatnosciItems
+        {
+            get
+            {
+                return new SposobyPlatnosciB(KinoEntities).GetSposobyPlatnosciKeyAndValueItems();
+
+            }
+        }
+        public IQueryable<KeyAndValue> DostawcaItems
+        {
+            get
+            {
+                return new DostawcaB(KinoEntities).GetDostawcyKeyAndValueItems();
+
+            }
+        }
+        #endregion
+        #region Helpers
+        public override void Save()
+        {
+            KinoEntities.Faktura.Add(item); //Dodanie towaru do lokalnej kolekcji.
+            KinoEntities.SaveChanges(); //Zapisuje zmiany do bazy danych
+        }
+
+        #endregion
     }
 }

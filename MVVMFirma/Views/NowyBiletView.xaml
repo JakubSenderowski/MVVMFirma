@@ -7,6 +7,36 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Label>Tutaj beda nowe bilety</Label>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="200"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+        </Grid.RowDefinitions>
+        <Label Grid.Column="0" Grid.Row="0" Margin="0,5,0,5" Content="Cena"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Margin="0,8,0,8" Text="{Binding Path=Cena, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Margin="0,5,0,5" Content="TypBiletu"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="0,8,0,0" Text="{Binding Path=TypBiletu, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Margin="0,5,0,5" Content="Tytuł Filmu"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" Margin="0,8,0,8"
+  ItemsSource="{Binding FilmItems}"
+  DisplayMemberPath="Value"
+  SelectedValuePath="Key"
+  SelectedValue="{Binding Path=FilmID, Mode=TwoWay}" />
+
+
+        <Label Grid.Column="0" Grid.Row="3" Margin="0,5,0,5" Content="Opis"/>
+        <TextBox Grid.Column="1" Grid.Row="3" Margin="0,8,0,5" Text="{Binding Path=Opis, UpdateSourceTrigger=PropertyChanged}"/>
+
+
     </Grid>
 </local:JedenViewBase>

@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="BiletID" />
           </Key>
-          <Property Name="BiletID" Type="int" Nullable="false" />
+          <Property Name="BiletID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Cena" Type="decimal" Precision="10" Scale="2" Nullable="false" />
           <Property Name="TypBiletu" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Opis" Type="text" />

@@ -87,6 +87,7 @@
     <DataTemplate DataType="{x:Type vm:WszystkieDomowieniaViewModel}">
         <vw:WszystkieDomowieniaView/>
     </DataTemplate>
+   
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
         <Setter Property="HeaderTemplate">

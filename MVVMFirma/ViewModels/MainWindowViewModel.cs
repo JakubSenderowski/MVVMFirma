@@ -120,6 +120,8 @@ namespace MVVMFirma.ViewModels
                   new CommandViewModel(
                     "Domowienia",
                     new BaseCommand(() => this.ShowAllDomowienia())),
+                 
+
 
             };
         }
@@ -158,6 +160,7 @@ namespace MVVMFirma.ViewModels
         #endregion // Workspaces
 
         #region Private Helpers
+       
         private void CreateTowar()
         {
             NowyTowarViewModel workspace = new NowyTowarViewModel();
