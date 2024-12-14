@@ -84,7 +84,7 @@
           </Key>
           <Property Name="PromocjaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Nazwa" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="Opis" Type="text" Nullable="false" />
+          <Property Name="Opis" Type="text" />
           <Property Name="Rabat" Type="decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="DataRozpoczecia" Type="date" Nullable="false" />
           <Property Name="DataZakonczenia" Type="date" Nullable="false" />
@@ -162,7 +162,7 @@
           <Key>
             <PropertyRef Name="StatystykiID" />
           </Key>
-          <Property Name="StatystykiID" Type="int" Nullable="false" />
+          <Property Name="StatystykiID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Data" Type="date" Nullable="false" />
           <Property Name="LiczbaSprzedanychBiletow" Type="int" Nullable="false" />
           <Property Name="LacznyPrzychod" Type="decimal" Precision="10" Scale="2" Nullable="false" />
@@ -589,7 +589,7 @@
           </Key>
           <Property Name="PromocjaID" Type="Int32" Nullable="false" />
           <Property Name="Nazwa" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Opis" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Rabat" Type="Decimal" Precision="5" Scale="2" Nullable="false" />
           <Property Name="DataRozpoczecia" Type="DateTime" Precision="0" Nullable="false" />
           <Property Name="DataZakonczenia" Type="DateTime" Precision="0" Nullable="false" />
