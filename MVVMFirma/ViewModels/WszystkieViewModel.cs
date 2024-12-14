@@ -1,4 +1,5 @@
-﻿using MVVMFirma.Helper;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Helper;
 using MVVMFirma.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace MVVMFirma.ViewModels
         #region DB
         protected readonly KinoEntities kinoEntities; // Pole, które repreztenutje bazę danych.
         #endregion
-        #region LoadCommand
+        #region Command
         private BaseCommand _LoadCommand; //Komenda, która będzie wywoływać funkcj (Pobierająca z bazy danych towar)
 
         public ICommand LoadCommand
@@ -25,6 +26,17 @@ namespace MVVMFirma.ViewModels
                 if (_LoadCommand == null)
                     _LoadCommand = new BaseCommand(() => Load());
                 return _LoadCommand;
+            }
+        }
+        private BaseCommand _AddCommand; //Komenda, która będzie wywoływać funkcje (Wywołanie okna do dodawania, zostanie podpięta pod przycisk "Dodaj")
+
+        public ICommand AddCommand
+        {
+            get
+            {
+                if (_AddCommand == null)
+                    _AddCommand = new BaseCommand(() => add());
+                return _AddCommand;
             }
         }
         #endregion
@@ -58,6 +70,13 @@ namespace MVVMFirma.ViewModels
         #endregion
         #region Helpers
         public abstract void Load(); // Metoda Load pobiera wszystkie towary z bazy danych.
+        private void add()
+        {   
+            //Messanger jest z bioblioteki mmmvLight, dzięki Messangerowi wysyłami do innych obiektów komunikat DisplayName ADD, add jest nazwą widoków.
+
+            //Ten komunikat zostanie odbierze MainWindowViewModel, które odpowiada za otwieranie zakładek. 
+            Messenger.Default.Send(DisplayName + "Add");
+        }
         #endregion
     }
 }

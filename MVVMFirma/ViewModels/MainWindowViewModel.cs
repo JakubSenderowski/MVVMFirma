@@ -8,6 +8,7 @@ using System.Diagnostics;
 using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Windows.Data;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace MVVMFirma.ViewModels
 {
@@ -33,6 +34,8 @@ namespace MVVMFirma.ViewModels
         }
         private List<CommandViewModel> CreateCommands()
         {
+            //To jest messanger, którzy oczekuje na Stringa. Jak string zostanie złapany to wywołuje metode Open, która jest zdefiniowana w regionie Private Helpers.
+            Messenger.Default.Register<string>(this, open);
             return new List<CommandViewModel>
             {
                 new CommandViewModel(
@@ -435,6 +438,28 @@ namespace MVVMFirma.ViewModels
             ICollectionView collectionView = CollectionViewSource.GetDefaultView(this.Workspaces);
             if (collectionView != null)
                 collectionView.MoveCurrentTo(workspace);
+        }
+        private void open(string name) //name to jest wysłany komunikat
+        {
+            if (name == "TowaryAdd") CreateView(new NowyTowarViewModel());
+            if (name == "DomowieniaAdd") CreateView(new NoweDomowienieViewModel());
+            if (name == "StatystkiAdd") CreateView(new NowaStatystykaViewModel());
+            if (name == "SaleAdd") CreateView(new NowaSalaViewModel());
+            if (name == "KontrahenciAdd") CreateView(new NowyKontrahentViewModel());
+            if (name == "RepertuaryAdd") CreateView(new NowyRepertuarViewModel());
+            if (name == "DostawcyAdd") CreateView(new NowyDostawcaViewModel());
+            if (name == "RezerwacjeAdd") CreateView(new NowaRezerwacjaViewModel());
+            if (name == "RecenzjeAdd") CreateView(new NowaRecenzjaViewModel());
+            if (name == "PromocjeAdd") CreateView(new NowaPromocjaViewModel());
+            if (name == "KlienciAdd") CreateView(new NowyKlientViewModel());
+            if (name == "FakturyAdd") CreateView(new NowaFakturaViewModel());
+            if (name == "BiletyAdd") CreateView(new NowyBiletViewModel());
+            if (name == "FilmyAdd") CreateView(new NowyFilmViewModel());                
+        }
+        private void CreateView (WorkspaceViewModel workspace)
+        {
+            this.Workspaces.Add(workspace);
+            this.SetActiveWorkspace(workspace);
         }
         #endregion
     }
