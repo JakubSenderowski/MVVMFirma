@@ -6,7 +6,38 @@
              xmlns:local="clr-namespace:MVVMFirma.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="White">
-        <Label>Tutaj bedzie nowy repertuar</Label>       
+    <Grid Background="White" Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Margin="5" VerticalAlignment="Center" Content="Data:"/>
+        <DatePicker Grid.Column="1" Grid.Row="0" Margin="5" SelectedDate="{Binding Path=Data, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label Grid.Column="0" Grid.Row="1" Margin="5" VerticalAlignment="Center" Content="Godziny Seansów:"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="5" Text="{Binding Path=GodzinySeansow, UpdateSourceTrigger=PropertyChanged}" />
+
+        <Label Grid.Column="0" Grid.Row="2" Margin="5" VerticalAlignment="Center" Content="Numer Sali:"/>
+        <ComboBox Grid.Column="1" Grid.Row="2" Margin="5"
+              ItemsSource="{Binding SalaItems}"
+              DisplayMemberPath="Value"
+              SelectedValuePath="Key"
+              SelectedValue="{Binding Path=SalaID, Mode=TwoWay}" />
+
+        <Label Grid.Column="0" Grid.Row="3" Margin="5" VerticalAlignment="Center" Content="Film:"/>
+        <ComboBox Grid.Column="1" Grid.Row="3" Margin="5"
+              ItemsSource="{Binding FilmItems}"
+              DisplayMemberPath="Value"
+              SelectedValuePath="Key"
+              SelectedValue="{Binding Path=FilmID, Mode=TwoWay}" />
     </Grid>
+
+
 </local:JedenViewBase>

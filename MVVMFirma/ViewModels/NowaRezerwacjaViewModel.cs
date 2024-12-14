@@ -71,7 +71,7 @@ namespace MVVMFirma.ViewModels
         public String StatusRezerwacji
         {
             get
-            {
+            { 
                 return item.StatusRezerwacji;
             }
             set
