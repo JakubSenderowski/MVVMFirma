@@ -76,6 +76,10 @@
     <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
     <Compile Include="Models\BusinessLogic\DostawcaB.cs" />
     <Compile Include="Models\BusinessLogic\FilmB.cs" />
+    <Compile Include="Models\BusinessLogic\KlientImie.cs" />
+    <Compile Include="Models\BusinessLogic\KlientMail.cs" />
+    <Compile Include="Models\BusinessLogic\KlientNazwisko.cs" />
+    <Compile Include="Models\BusinessLogic\KlientNumer.cs" />
     <Compile Include="Models\BusinessLogic\KontrahenciB.cs" />
     <Compile Include="Models\BusinessLogic\SposobyPlatnosciB.cs" />
     <Compile Include="Models\EntitiesForView\BiletForAllView.cs" />
