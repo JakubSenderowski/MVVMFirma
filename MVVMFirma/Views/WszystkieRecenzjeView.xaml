@@ -14,7 +14,7 @@
                 <DataGridTextColumn Header="Ocena" Binding="{Binding Ocena}"/>
                 <DataGridTextColumn Header="Komentarz" Binding="{Binding Komentarz}"/>
                 <DataGridTextColumn Header="Tytuł Filmu" Binding="{Binding FilmTytul}"/>
-                <DataGridTextColumn Header="Opis Filmu" Binding="{Binding FilmOpis}"/>
+                
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
