@@ -7,6 +7,49 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Background="White">
-        <Label>Tutaj bedzie nowa promocja</Label>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" MinWidth="120" />
+            <ColumnDefinition Width="*" MinWidth="200" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label Grid.Column="0" Grid.Row="0" Margin="10,10,5,5" Content="Nazwa" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="0" Margin="5,10,10,5" Text="{Binding Path=Nazwa, UpdateSourceTrigger=PropertyChanged}"  Padding="5"/>
+
+        <Label Grid.Column="0" Grid.Row="1" Margin="10,5,5,5" Content="Opis" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="1" Margin="5,5,10,5" Text="{Binding Path=Opis, UpdateSourceTrigger=PropertyChanged}" Padding="5"/>
+
+        <Label Grid.Column="0" Grid.Row="2" Margin="10,5,5,5" Content="Rabat" VerticalAlignment="Center"/>
+        <TextBox Grid.Column="1" Grid.Row="2" Margin="5,5,10,5" Text="{Binding Path=Rabat, UpdateSourceTrigger=PropertyChanged}" Padding="5"/>
+
+        <Label Grid.Column="0" Grid.Row="3" Margin="10,5,5,5" Content="DataRozpoczecia" VerticalAlignment="Center"/>
+        <DatePicker Grid.Column="1" Grid.Row="3" Margin="5,5,10,5" SelectedDate="{Binding Path=DataRozpoczecia, UpdateSourceTrigger=PropertyChanged}" Padding="5"/>
+
+        <Label Grid.Column="0" Grid.Row="4" Margin="10,5,5,5" Content="DataZakonczenia" VerticalAlignment="Center"/>
+        <DatePicker Grid.Column="1" Grid.Row="4" Margin="5,5,10,5" SelectedDate="{Binding Path=DataZakonczenia, UpdateSourceTrigger=PropertyChanged}" Padding="5"/>
+
+        <Label Grid.Column="0" Grid.Row="5" Margin="10,5,5,5" Content="Film" VerticalAlignment="Center"/>
+        <ComboBox Grid.Column="1" Grid.Row="5" Margin="5,5,10,5"
+              ItemsSource="{Binding FilmItems}"
+              DisplayMemberPath="Value"
+              SelectedValuePath="Key"
+              SelectedValue="{Binding Path=FilmID, Mode=TwoWay}" Padding="5"/>
+
+        <Label Grid.Column="0" Grid.Row="6" Margin="10,5,5,10" Content="Bilet" VerticalAlignment="Center"/>
+        <ComboBox Grid.Column="1" Grid.Row="6" Margin="5,5,10,10"
+        ItemsSource="{Binding BiletItems}"
+        DisplayMemberPath="Value"
+        SelectedValuePath="Key"
+        SelectedValue="{Binding Path=BiletID, Mode=TwoWay}" Padding="5"/>
+
+
     </Grid>
 </local:JedenViewBase>
