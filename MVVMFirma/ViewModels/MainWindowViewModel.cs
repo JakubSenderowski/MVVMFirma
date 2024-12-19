@@ -123,7 +123,10 @@ namespace MVVMFirma.ViewModels
                   new CommandViewModel(
                     "Domowienia",
                     new BaseCommand(() => this.ShowAllDomowienia())),
-                 
+                  new CommandViewModel(
+                    "Raport Sprzedazy",
+                    new BaseCommand(() => this.CreateRaportSprzedazy())),
+
 
 
             };
@@ -167,6 +170,12 @@ namespace MVVMFirma.ViewModels
         private void CreateTowar()
         {
             NowyTowarViewModel workspace = new NowyTowarViewModel();
+            this.Workspaces.Add(workspace);
+            this.SetActiveWorkspace(workspace);
+        }
+        private void CreateRaportSprzedazy()
+        {
+            RaportSprzedazyViewModel workspace = new RaportSprzedazyViewModel();
             this.Workspaces.Add(workspace);
             this.SetActiveWorkspace(workspace);
         }

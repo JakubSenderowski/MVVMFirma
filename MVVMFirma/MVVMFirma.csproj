@@ -88,6 +88,7 @@
     </Compile>
     <Compile Include="Helper\BaseCommand.cs" />
     <Compile Include="Models\BusinessLogic\BiletB.cs" />
+    <Compile Include="Models\BusinessLogic\BiletCenaB.cs" />
     <Compile Include="Models\BusinessLogic\DatabaseClass.cs" />
     <Compile Include="Models\BusinessLogic\DostawcaB.cs" />
     <Compile Include="Models\BusinessLogic\FilmB.cs" />
@@ -99,6 +100,8 @@
     <Compile Include="Models\BusinessLogic\SalaB.cs" />
     <Compile Include="Models\BusinessLogic\SalaLiczbaMiejsc.cs" />
     <Compile Include="Models\BusinessLogic\SposobyPlatnosciB.cs" />
+    <Compile Include="Models\BusinessLogic\TowarB.cs" />
+    <Compile Include="Models\BusinessLogic\UtargB.cs" />
     <Compile Include="Models\EntitiesForView\BiletForAllView.cs" />
     <Compile Include="Models\EntitiesForView\DomowieniaForAllView.cs" />
     <Compile Include="Models\EntitiesForView\FakturaForAllView.cs" />
@@ -192,6 +195,7 @@
     <Compile Include="ViewModels\NowyKontrahentViewModel.cs" />
     <Compile Include="ViewModels\NowyRepertuarViewModel.cs" />
     <Compile Include="ViewModels\NowyTowarViewModel.cs" />
+    <Compile Include="ViewModels\RaportSprzedazyViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
     <Compile Include="ViewModels\WszyscyDostawcyViewModel.cs" />
     <Compile Include="ViewModels\WszyscyKlienciViewModel.cs" />
@@ -255,6 +259,9 @@
     </Compile>
     <Compile Include="Views\NowyTowarView.xaml.cs">
       <DependentUpon>NowyTowarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaportSprzedazyView.xaml.cs">
+      <DependentUpon>RaportSprzedazyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\WszyscyDostawcyView.xaml.cs">
       <DependentUpon>WszyscyDostawcyView.xaml</DependentUpon>
@@ -399,6 +406,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NowyTowarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaportSprzedazyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
