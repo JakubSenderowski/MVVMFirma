@@ -93,6 +93,9 @@
     <DataTemplate DataType="{x:Type vm:RaportSprzedazyTowarowViewModel}">
         <vw:RaportSprzedazyTowarowView/>
     </DataTemplate>
+    <DataTemplate DataType="{x:Type vm:RaportPromocjiViewModel}">
+        <vw:RaportPromocjiView/>
+    </DataTemplate>
 
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">

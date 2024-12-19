@@ -97,6 +97,7 @@
     <Compile Include="Models\BusinessLogic\KlientNazwisko.cs" />
     <Compile Include="Models\BusinessLogic\KlientNumer.cs" />
     <Compile Include="Models\BusinessLogic\KontrahenciB.cs" />
+    <Compile Include="Models\BusinessLogic\RaportB.cs" />
     <Compile Include="Models\BusinessLogic\SalaB.cs" />
     <Compile Include="Models\BusinessLogic\SalaLiczbaMiejsc.cs" />
     <Compile Include="Models\BusinessLogic\SposobyPlatnosciB.cs" />
@@ -196,6 +197,7 @@
     <Compile Include="ViewModels\NowyKontrahentViewModel.cs" />
     <Compile Include="ViewModels\NowyRepertuarViewModel.cs" />
     <Compile Include="ViewModels\NowyTowarViewModel.cs" />
+    <Compile Include="ViewModels\RaportPromocjiViewModel.cs" />
     <Compile Include="ViewModels\RaportSprzedazyTowarowViewModel.cs" />
     <Compile Include="ViewModels\RaportSprzedazyViewModel.cs" />
     <Compile Include="ViewModels\WorkspaceViewModel.cs" />
@@ -261,6 +263,9 @@
     </Compile>
     <Compile Include="Views\NowyTowarView.xaml.cs">
       <DependentUpon>NowyTowarView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RaportPromocjiView.xaml.cs">
+      <DependentUpon>RaportPromocjiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RaportSprzedazyTowarowView.xaml.cs">
       <DependentUpon>RaportSprzedazyTowarowView.xaml</DependentUpon>
@@ -411,6 +416,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\NowyTowarView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RaportPromocjiView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
