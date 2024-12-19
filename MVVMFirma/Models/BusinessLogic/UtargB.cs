@@ -15,13 +15,13 @@ namespace MVVMFirma.Models.BusinessLogic
         #endregion
         #region Funkcje biznesowe
         //Funckja oblicza  całkowitą kwotę sprzedaży za Dany tytuł filmu! <---!
-        public double? UtargOkresTowar(int FilmID)
+        public decimal? UtargOkresTowar(int FilmID)
         {
             return (
                 from bilet in db.Bilet
                 where bilet.FilmID == FilmID
-                select bilet
-            ).Sum(x => (double?)x.Cena);
+                select bilet.Cena
+            ).Sum();
         }
         #endregion
     }

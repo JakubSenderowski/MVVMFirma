@@ -23,7 +23,7 @@ namespace MVVMFirma.Models.BusinessLogic
                 select new KeyAndValue
                 {
                     Key = towar.IdTowaru,
-                    Value = towar.Nazwa + " " + towar.Kod
+                    Value = towar.Nazwa
                 }
                 ).ToList().AsQueryable();
             #endregion

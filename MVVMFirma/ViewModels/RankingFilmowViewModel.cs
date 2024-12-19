@@ -11,71 +11,67 @@ using System.Windows.Input;
 
 namespace MVVMFirma.ViewModels
 {
-    public class RaportSprzedazyViewModel:WorkspaceViewModel
+    internal class RankingFilmowViewModel:WorkspaceViewModel
     {
         #region DB
         KinoEntities db;
         #endregion
         #region Konstruktor
-        public RaportSprzedazyViewModel()
+        public RankingFilmowViewModel()
         {
-            base.DisplayName = "Raport Sprzedazy";
+            base.DisplayName = "Ranking Filmów";
             db = new KinoEntities();
         }
         #endregion
-        #region Pola
-        //Dla każdego pola istostnego dla obliczeń, tworzymy pole i własciwość. 
         private int _FilmID;
-        public int FilmID 
-        { 
-            get { return _FilmID; }
-            set 
-            {
-                if (_FilmID != value) 
-                { 
-                    _FilmID = value;
-                    OnPropertyChanged(() =>  FilmID);
-                }
-            }
-        }
-        private decimal? _utarg;
-        public decimal? Utarg
+        public int FilmID
         {
-            get { return _utarg; }
+            get { return _FilmID; }
             set
             {
-                if (_utarg != value)
+                if (_FilmID != value)
                 {
-                    _utarg = value;
-                    OnPropertyChanged(() => Utarg);
+                    _FilmID = value;
+                    OnPropertyChanged(() => FilmID);
                 }
             }
         }
-
+        private int? _ranking;
+        public int? Ranking
+        {
+            get { return _ranking; }
+            set
+            {
+                if (_ranking != value)
+                {
+                    _ranking = value;
+                    OnPropertyChanged(() => _ranking);
+                }
+            }
+        }
         public IQueryable<KeyAndValue> FilmyItems
         {
-            get 
-            { 
+            get
+            {
                 return new FilmB(db).GetFilmKeyAndValueItems();
             }
         }
-        #endregion
         #region Komneda
         //To jest komenda, która zostanie podpięta pod przycisk Oblicz. Która wywoła obliczUtargKlik
-        private BaseCommand _ObliczCommand;
-        public ICommand ObliczCommand
+        private BaseCommand _WyswietlCommand;
+        public ICommand WyswietlCommand
         {
-            get 
+            get
             {
-                if (_ObliczCommand == null)
-                    _ObliczCommand = new BaseCommand(() => obliczUtargKlik());
-                return _ObliczCommand;
+                if (_WyswietlCommand == null)
+                    _WyswietlCommand = new BaseCommand(() => wyswietlRanking());
+                return _WyswietlCommand;
             }
         }
-        private void obliczUtargKlik()
-        { 
+        private void wyswietlRanking()
+        {
             //To jest użycie funkcji z klasy logiki biznesowej, która liczy sumą za dany Tytuł Filmu w sprzedanych biletach.
-            Utarg = new UtargB(db).UtargOkresTowar(FilmID);
+            Ranking = new RankingB(db).LiczbaSprzedanychBiletowDlaFilmu(FilmID);
         }
         #endregion
     }

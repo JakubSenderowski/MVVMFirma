@@ -27,7 +27,7 @@
         <AssociationConnector Association="KinoModel.FK__Repertuar__SalaI__6477ECF3" ManuallyRouted="false" />
         <AssociationConnector Association="KinoModel.Sala_Film" ManuallyRouted="false" />
         <EntityTypeShape EntityType="KinoModel.Towar" Width="1.5" PointX="12.875" PointY="1.75" />
-        <EntityTypeShape EntityType="KinoModel.Domowienia" Width="1.5" PointX="9.625" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KinoModel.Domowienia" Width="1.5" PointX="9.75" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="KinoModel.Przerwa" Width="1.5" PointX="2.75" PointY="14.75" />
         <AssociationConnector Association="KinoModel.FK_Promocja_Bilet" />
         <AssociationConnector Association="KinoModel.FK_Faktura_Dostawca" />
