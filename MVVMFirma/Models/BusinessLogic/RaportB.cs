@@ -14,7 +14,6 @@ namespace MVVMFirma.Models.BusinessLogic
             : base(db) { }
         #endregion
         #region Funkcje biznesowe
-        //Funckja oblicza  całkowitą kwotę sprzedaży za Dany tytuł filmu! <---!
         public List<String> RaportOkresowy(int FilmID, DateTime DataRozpoczecia, DateTime DataZakonczenia)
         {
             return (

@@ -1,4 +1,6 @@
-﻿using MVVMFirma.Models.BusinessLogic;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Helper;
+using MVVMFirma.Models.BusinessLogic;
 using MVVMFirma.Models.Entities;
 using MVVMFirma.Models.EntitiesForView;
 using System;
@@ -6,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MVVMFirma.ViewModels
 {
@@ -16,6 +19,25 @@ namespace MVVMFirma.ViewModels
            : base("Faktura")
         {
             item = new Faktura();
+            //Messenger, który oczekuje na kontrahenta z widoku ze Wszystkimi kontrahentami
+            //Kiedy jest "Złapany", wywoływana jest metoda getWybranyKontrahent
+            Messenger.Default.Register<Kontrahent>(this, getWybranyKontrahent);
+        }
+        #endregion
+        #region Command
+        private BaseCommand _ShowKontrahenci;
+        public ICommand ShowKontrahenci
+        {
+            get
+            {
+                if (_ShowKontrahenci == null)
+                    _ShowKontrahenci = new BaseCommand(() => showKontrahenci());
+                return _ShowKontrahenci;
+            }
+        }
+        private void showKontrahenci()
+        {
+            Messenger.Default.Send<string>("KontrahenciAll");
         }
         #endregion
         #region Pola
@@ -57,6 +79,9 @@ namespace MVVMFirma.ViewModels
                 OnPropertyChanged(() => IdKontrahenta);
             }
         }
+
+        public string KontrahentNazwa { get; set; }
+        public string KontrahentNIP { get; set; }
         public DateTime TerminPlatnosci
         {
             get
@@ -120,6 +145,13 @@ namespace MVVMFirma.ViewModels
         }
         #endregion
         #region Helpers
+
+        private void getWybranyKontrahent(Kontrahent kontrahent)
+        {
+            IdKontrahenta = kontrahent.IdKontrahenta;
+            KontrahentNazwa = kontrahent.Nazwa;
+            KontrahentNIP = kontrahent.NIP;
+        }
         public override void Save()
         {
             KinoEntities.Faktura.Add(item); //Dodanie towaru do lokalnej kolekcji.
