@@ -1,13 +1,15 @@
 ﻿using MVVMFirma.Models.Entities;
+using MVVMFirma.Models.Validatory;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MVVMFirma.ViewModels
 {
-    public class NowyDostawcaViewModel:JedenViewModel<Dostawca>
+    public class NowyDostawcaViewModel:JedenViewModel<Dostawca>, IDataErrorInfo
     {
 
         public NowyDostawcaViewModel()
@@ -57,5 +59,34 @@ namespace MVVMFirma.ViewModels
             KinoEntities.Dostawca.Add(item); //Dodanie towaru do lokalnej kolekcji.
             KinoEntities.SaveChanges(); //Zapisuje zmiany do bazy danych
         }
+        #region Validation
+        public string Error
+        {
+            get
+
+            {
+                return null;
+            }
+        }
+        public string this[string name]
+        {
+            get
+            {
+                string komunikat = null;
+                if (name == "Telefon")
+                    komunikat = TelefonValidator.SprawdzTelefon(this.Telefon);
+                return komunikat;
+            }
+        }
+
+        public override bool IsValid()
+        {
+            if (this["Telefon"] == null)
+                return true;
+            else
+                return false;
+
+        }
+        #endregion
     }
 }

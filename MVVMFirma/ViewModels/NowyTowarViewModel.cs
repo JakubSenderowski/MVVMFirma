@@ -1,14 +1,16 @@
-﻿using MVVMFirma.Helper;
+﻿ using MVVMFirma.Helper;
 using MVVMFirma.Models.Entities;
+using MVVMFirma.Models.Validatory;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Windows.Input;
 
 namespace MVVMFirma.ViewModels
 {
-    public class NowyTowarViewModel : JedenViewModel<Towar>
+    public class NowyTowarViewModel : JedenViewModel<Towar>, IDataErrorInfo
     {
         
         #region Constructor
@@ -97,8 +99,38 @@ namespace MVVMFirma.ViewModels
             KinoEntities.Towar.Add(item); //Dodanie towaru do lokalnej kolekcji.
             KinoEntities.SaveChanges(); //Zapisuje zmiany do bazy danych
         }
-       
-        #endregion
 
+        #endregion
+        #region Validation
+        public string Error
+        {
+            get 
+            
+            {
+                return null;
+            }
+        }
+        public string this[string name]
+        {
+            get
+            {
+                string komunikat = null;
+                if (name == "Nazwa")
+                    komunikat = StringValidator.SprawdzCzyZaczynaSieOdDuzej(this.Nazwa);
+                if (name == "StawkaVatSprzedazy")
+                    komunikat = BiznesValidator.SprawdzVat(this.StawkaVatSprzedazy);
+                return komunikat;
+            }
+        }
+
+        public override bool IsValid()
+        { 
+         if (this["Nazwa"] == null && this["StawkaVatSprzedazy"] == null)
+                return true;
+            else
+                return false;
+
+        }
+        #endregion
     }
 }

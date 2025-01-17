@@ -2,15 +2,17 @@
 using MVVMFirma.Models.BusinessLogic;
 using MVVMFirma.Models.Entities;
 using MVVMFirma.Models.EntitiesForView;
+using MVVMFirma.Models.Validatory;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MVVMFirma.ViewModels
 {
-    public class NowaPromocjaViewModel:JedenViewModel<Promocja>
+    public class NowaPromocjaViewModel:JedenViewModel<Promocja>, IDataErrorInfo
     {
         #region Konstruktor
         public NowaPromocjaViewModel()
@@ -129,7 +131,37 @@ namespace MVVMFirma.ViewModels
             KinoEntities.Promocja.Add(item); //Dodanie towaru do lokalnej kolekcji.
             KinoEntities.SaveChanges(); //Zapisuje zmiany do bazy danych
         }
-
         #endregion
+        #region Validation
+        public string Error
+        {
+            get
+
+            {
+                return null;
+            }
+        }
+        public string this[string name]
+        {
+            get
+            {
+                string komunikat = null;
+                if (name == "Rabat")
+                    komunikat = RabatValidator.SprawdzRabat(this.Rabat);
+                return komunikat;
+            }
+        }
+
+        public override bool IsValid()
+        {
+            if (this["Rabat"] == null)
+                return true;
+            else
+                return false;
+
+        }
+        #endregion
+
+
     }
 }

@@ -179,6 +179,12 @@
     <Compile Include="Models\Entities\Towar.cs">
       <DependentUpon>ModelKino.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Validatory\BiznesValidator.cs" />
+    <Compile Include="Models\Validatory\OcenyValidator.cs" />
+    <Compile Include="Models\Validatory\RabatValidator.cs" />
+    <Compile Include="Models\Validatory\StringValidator.cs" />
+    <Compile Include="Models\Validatory\TelefonValidator.cs" />
+    <Compile Include="Models\Validatory\Validator.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
     <Compile Include="ViewModels\CommandViewModel.cs" />
     <Compile Include="ViewModels\JedenViewModel.cs" />
@@ -488,9 +494,7 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Validatory\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="Models\Entities\ModelKino.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

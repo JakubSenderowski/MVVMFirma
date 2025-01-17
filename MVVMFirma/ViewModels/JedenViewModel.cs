@@ -42,8 +42,19 @@ namespace MVVMFirma.ViewModels
         public abstract void Save();
         public void SaveAndClose()
         {
-            Save();
-            base.OnRequestClose();
+            if (IsValid())
+            {
+                Save();
+                base.OnRequestClose();
+            }
+           
+        }
+        #endregion
+        #region Validation
+
+        public virtual bool IsValid()
+        {
+            return true;
         }
         #endregion
     }

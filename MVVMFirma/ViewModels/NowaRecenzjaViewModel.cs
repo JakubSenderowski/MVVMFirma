@@ -1,15 +1,17 @@
 ﻿using MVVMFirma.Models.BusinessLogic;
 using MVVMFirma.Models.Entities;
 using MVVMFirma.Models.EntitiesForView;
+using MVVMFirma.Models.Validatory;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MVVMFirma.ViewModels
 {
-    public class NowaRecenzjaViewModel:JedenViewModel<Recenzja>
+    public class NowaRecenzjaViewModel:JedenViewModel<Recenzja>, IDataErrorInfo
     {
         #region Konstruktor
         public NowaRecenzjaViewModel()
@@ -85,6 +87,35 @@ namespace MVVMFirma.ViewModels
             KinoEntities.SaveChanges(); //Zapisuje zmiany do bazy danych
         }
 
+        #endregion
+        #region Validation
+        public string Error
+        {
+            get
+
+            {
+                return null;
+            }
+        }
+        public string this[string name]
+        {
+            get
+            {
+                string komunikat = null;
+                if (name == "Ocena")
+                    komunikat = OcenyValidator.SprawdzOcene(this.Ocena);
+                return komunikat;
+            }
+        }
+
+        public override bool IsValid()
+        {
+            if (this["Ocena"] == null)
+                return true;
+            else
+                return false;
+
+        }
         #endregion
     }
 }
