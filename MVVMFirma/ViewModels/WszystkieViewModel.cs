@@ -68,6 +68,59 @@ namespace MVVMFirma.ViewModels
             base.DisplayName = displayName;
         }
         #endregion
+        #region Sort And Filtr
+        //Sort (Sortowanie) - Wynik wyboru po czym sortować zostanie zapisany w SortField.
+
+        public string SortField { get; set; }
+        public List<string> SortComboboxItems
+        {
+            get 
+           
+            {
+                return GetComboboxSortList();
+            }     
+        }
+
+        public abstract List<string> GetComboboxSortList();
+        private BaseCommand _SortCommand; //Komenda, która wywoła się po naciśnieciu na przycisk srotuj w sortowaniu (Generic.XAML)
+
+        public ICommand SortCommand
+        {
+            get
+            {
+                if (_SortCommand == null)
+                    _SortCommand = new BaseCommand(() => Sort());
+                return _SortCommand;
+            }
+        }
+        public abstract void Sort();
+        //Filtr (Filtrowanie)
+        public string FindField { get; set; }
+        public List<string> FindComboboxItems
+        {
+            get
+
+            {
+                return GetComboboxFindList();
+            }
+        }
+
+        public abstract List<string> GetComboboxFindList();
+        public string FindTextBox { get; set; }
+        private BaseCommand _FindCommand; //Komenda, która wywoła się po naciśnieciu na przycisk srotuj w sortowaniu (Generic.XAML)
+
+        public ICommand FindCommand
+        {
+            get
+            {
+                if (_FindCommand == null)
+                    _FindCommand = new BaseCommand(() => Find());
+                return _FindCommand;
+            }
+        }
+        public abstract void Find();
+
+        #endregion
         #region Helpers
         public abstract void Load(); // Metoda Load pobiera wszystkie towary z bazy danych.
         private void add()

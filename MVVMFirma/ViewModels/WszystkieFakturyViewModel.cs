@@ -18,6 +18,41 @@ namespace MVVMFirma.ViewModels
         {
         }
         #endregion
+        #region Sort And Find
+        //Tutaj decydujemy po czym sortować do ComboBoxa <---
+        public override List<string> GetComboboxSortList()
+        {
+            return new List<string> { "Numer", "KontrahentNIP" };
+        }
+        //Tutaj decydujemy jak sortować <---
+        public override void Sort()
+        {
+            if (SortField == "Numer")
+            {
+                List = new ObservableCollection<FakturaForAllView>
+                    (List.OrderBy(item => item.Numer));
+            }
+            if (SortField == "KontrahentNIP")
+            {
+                List = new ObservableCollection<FakturaForAllView>
+                    (List.OrderBy(item => item.KontrahentNIP));
+            }
+        }
+        //Tutaj decydujemy po czym szukać do ComboBoxa<---
+        public override List<string> GetComboboxFindList()
+        {
+            return new List<string> { "SposobPlatnosciNazwa" };
+        }
+        //Tutaj decydujemy jak wyszukiwać <---
+        public override void Find()
+        {
+            if (FindField == "SposobPlatnosciNazwa")
+            {
+                List = new ObservableCollection<FakturaForAllView>
+                    (List.Where(item => item.SposobPlatnosciNazwa != null && item.SposobPlatnosciNazwa.StartsWith(FindTextBox)));
+            }
+        }
+        #endregion
         #region Helpers
         //Metoda Load pobiera wszystkie towary z bazy danych.
         public override void Load()

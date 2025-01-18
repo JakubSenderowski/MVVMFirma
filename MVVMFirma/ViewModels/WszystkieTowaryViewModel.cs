@@ -18,6 +18,51 @@ namespace MVVMFirma.ViewModels
         {
         }
         #endregion
+        #region Sort And Find
+        //Tutaj decydujemy po czym sortować do ComboBoxa <---
+        public override List<string> GetComboboxSortList()
+        {
+            return new List<string> {"Kod", "Nazwa", "Cena"};
+        }
+        //Tutaj decydujemy jak sortować <---
+        public override void Sort()
+        {
+            if (SortField == "Kod")
+            {
+                List = new ObservableCollection<Towar>
+                    (List.OrderBy(item => item.Kod));
+            }
+            if (SortField == "Nazwa")
+            {
+                List = new ObservableCollection<Towar>
+                    (List.OrderBy(item => item.Nazwa));
+            }
+            if (SortField == "Cena")
+            {
+                List = new ObservableCollection<Towar>
+                    (List.OrderBy(item => item.Cena));
+            }
+        }
+        //Tutaj decydujemy po czym szukać do ComboBoxa<---
+        public override List<string> GetComboboxFindList()
+        {
+            return new List<string> { "Kod", "Nazwa" };
+        }
+        //Tutaj decydujemy jak wyszukiwać <---
+        public override void Find()
+        {
+            if (FindField == "Kod")
+            {
+                List = new ObservableCollection<Towar>
+                    (List.Where(item => item.Kod != null && item.Kod.StartsWith(FindTextBox)));
+            }
+            if (FindField == "Nazwa")
+            {
+                List = new ObservableCollection<Towar>
+                    (List.Where(item => item.Nazwa != null && item.Nazwa.StartsWith(FindTextBox)));
+            }
+        }
+        #endregion
         #region Helpers
         //Metoda Load pobiera wszystkie towary z bazy danych.
         public override void Load()
@@ -26,5 +71,6 @@ namespace MVVMFirma.ViewModels
                 (kinoEntities.Towar.ToList()); //Z bazy danych pobiera Towar i wszystkie rekordy zamienia na listę.
         }
         #endregion
+        
     }
 }

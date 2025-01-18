@@ -17,6 +17,46 @@ namespace MVVMFirma.ViewModels
         {
         }
         #endregion
+        #region Sort And Find
+        //Tutaj decydujemy po czym sortować do ComboBoxa <---
+        public override List<string> GetComboboxSortList()
+        {
+            return new List<string> { "LiczbaBiletow" };
+        }
+        //Tutaj decydujemy jak sortować <---
+        public override void Sort()
+        {
+            if (SortField == "LiczbaBiletow")
+            {
+                List = new ObservableCollection<RezerwacjaForAllView>
+                    (List.OrderBy(item => item.LiczbaBiletow));
+            }
+        }
+        //Tutaj decydujemy po czym szukać do ComboBoxa<---
+        public override List<string> GetComboboxFindList()
+        {
+            return new List<string> { "StatusRezerwacji", "KlientImie", "KlientNazwisko" };
+        }
+        //Tutaj decydujemy jak wyszukiwać <---
+        public override void Find()
+        {
+            if (FindField == "StatusRezerwacji")
+            {
+                List = new ObservableCollection<RezerwacjaForAllView>
+                    (List.Where(item => item.StatusRezerwacji != null && item.StatusRezerwacji.StartsWith(FindTextBox)));
+            }
+            if (FindField == "KlientImie")
+            {
+                List = new ObservableCollection<RezerwacjaForAllView>
+                    (List.Where(item => item.KlientImie != null && item.KlientImie.StartsWith(FindTextBox)));
+            }
+            if (FindField == "KlientNazwisko")
+            {
+                List = new ObservableCollection<RezerwacjaForAllView>
+                    (List.Where(item => item.KlientNazwisko != null && item.KlientNazwisko.StartsWith(FindTextBox)));
+            }
+        }
+        #endregion
         #region Helpers
         //Metoda Load pobiera wszystkie towary z bazy danych.
         public override void Load()

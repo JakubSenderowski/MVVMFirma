@@ -36,6 +36,41 @@ namespace MVVMFirma.ViewModels
         }
 
         #endregion
+        #region Sort And Find
+        //Tutaj decydujemy po czym sortować do ComboBoxa <---
+        public override List<string> GetComboboxSortList()
+        {
+           return new List<string> { "Nazwa"};
+        }
+        //Tutaj decydujemy jak sortować <---
+        public override void Sort()
+        {
+            if (SortField == "Nazwa")
+            {
+                List = new ObservableCollection<Kontrahent>
+                    (List.OrderBy(item => item.Nazwa));
+            }
+        }
+        //Tutaj decydujemy po czym szukać do ComboBoxa<---
+        public override List<string> GetComboboxFindList()
+        {
+            return new List<string> { "NIP", "Kod" };
+        }
+        //Tutaj decydujemy jak wyszukiwać <---
+        public override void Find()
+        {
+            if (FindField == "NIP")
+            {
+                List = new ObservableCollection<Kontrahent>
+                    (List.Where(item => item.NIP != null && item.NIP.StartsWith(FindTextBox)));
+            }
+            if (FindField == "Kod")
+            {
+                List = new ObservableCollection<Kontrahent>
+                    (List.Where(item => item.Kod != null && item.Kod.StartsWith(FindTextBox)));
+            }
+        }
+        #endregion
         public override void Load()
         {
             List = new ObservableCollection<Kontrahent>

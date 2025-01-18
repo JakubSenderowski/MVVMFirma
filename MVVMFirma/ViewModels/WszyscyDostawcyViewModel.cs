@@ -14,6 +14,36 @@ namespace MVVMFirma.ViewModels
             : base("Dostawcy") 
         {
         }
+        #region Sort And Find
+        //Tutaj decydujemy po czym sortować do ComboBoxa <---
+        public override List<string> GetComboboxSortList()
+        {
+            return new List<string> { "Nazwa" };
+        }
+        //Tutaj decydujemy jak sortować <---
+        public override void Sort()
+        {
+            if (SortField == "Nazwa")
+            {
+                List = new ObservableCollection<Dostawca>
+                    (List.OrderBy(item => item.Nazwa));
+            }
+        }
+        //Tutaj decydujemy po czym szukać do ComboBoxa<---
+        public override List<string> GetComboboxFindList()
+        {
+            return new List<string> { "Email" };
+        }
+        //Tutaj decydujemy jak wyszukiwać <---
+        public override void Find()
+        {
+            if (FindField == "Email")
+            {
+                List = new ObservableCollection<Dostawca>
+                    (List.Where(item => item.Email != null && item.Email.StartsWith(FindTextBox)));
+            }
+        }
+        #endregion
         public override void Load()
         {
             List = new ObservableCollection<Dostawca>
