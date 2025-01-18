@@ -1,4 +1,6 @@
-﻿using MVVMFirma.Models;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Helper;
+using MVVMFirma.Models;
 using MVVMFirma.Models.BusinessLogic;
 using MVVMFirma.Models.Entities;
 using MVVMFirma.Models.EntitiesForView;
@@ -9,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace MVVMFirma.ViewModels
 {
@@ -19,8 +22,44 @@ namespace MVVMFirma.ViewModels
            : base("Promocja")
         {
             item = new Promocja();
+            Messenger.Default.Register<Film>(this, getWybranyFilm);
+            Messenger.Default.Register<Bilet>(this, getWybranyBilet);
         }
         #endregion
+        #region Command
+        private BaseCommand _ShowFilmy; //Komenda, która będzie wywoływać funkcje (Wywołanie okna do dodawania, zostanie podpięta pod przycisk "Dodaj")
+
+        public ICommand ShowFilmy
+        {
+            get
+            {
+                if (_ShowFilmy == null)
+                    _ShowFilmy = new BaseCommand(() => showFilmy());
+                return _ShowFilmy;
+            }
+        }
+        private BaseCommand _ShowBilety; //Komenda, która będzie wywoływać funkcje (Wywołanie okna do dodawania, zostanie podpięta pod przycisk "Dodaj")
+
+        public ICommand ShowBilety
+        {
+            get
+            {
+                if (_ShowBilety == null)
+                    _ShowBilety = new BaseCommand(() => showBilety());
+                return _ShowBilety;
+            }
+        }
+        private void showFilmy()
+        {
+            Messenger.Default.Send<string>("FilmyAll");
+        }
+        private void showBilety()
+        {
+            Messenger.Default.Send<string>("BiletyAll");
+        }
+        #endregion
+        public string FilmTytul { get; set; }
+        public string BiletRodzaj { get; set; }
         #region Pola
         //Dla każdego pola na interface dodajmy properties.
         public String Nazwa
@@ -126,6 +165,16 @@ namespace MVVMFirma.ViewModels
         }
         #region Helpers
         #endregion
+        private void getWybranyFilm(Film film)
+        {
+            FilmID = film.FilmID;
+            FilmTytul = film.Tytul;
+        }
+        private void getWybranyBilet(Bilet bilet)
+        {
+            BiletID = bilet.BiletID;
+            BiletRodzaj = bilet.TypBiletu;
+        }
         public override void Save()
         {
             KinoEntities.Promocja.Add(item); //Dodanie towaru do lokalnej kolekcji.

@@ -483,6 +483,8 @@ namespace MVVMFirma.ViewModels
             if (name == "BiletyAdd") CreateView(new NowyBiletViewModel());
             if (name == "FilmyAdd") CreateView(new NowyFilmViewModel());
             if (name == "KontrahenciAll") ShowAllKontrahenci();
+            if (name == "FilmyAll") ShowAllFilmy();
+            if (name == "BiletyAll") ShowAllBilety();
         }
         private void CreateView (WorkspaceViewModel workspace)
         {

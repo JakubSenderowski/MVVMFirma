@@ -9,7 +9,8 @@
     <Grid Background="White">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" MinWidth="120" />
-            <ColumnDefinition Width="*" MinWidth="200" />
+            <ColumnDefinition Width="350" MinWidth="200" />
+            <ColumnDefinition Width="35" MinWidth="200" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -37,19 +38,12 @@
         <DatePicker Grid.Column="1" Grid.Row="4" Margin="5,5,10,5" SelectedDate="{Binding Path=DataZakonczenia, UpdateSourceTrigger=PropertyChanged}" Padding="5"/>
 
         <Label Grid.Column="0" Grid.Row="5" Margin="10,5,5,5" Content="Film" VerticalAlignment="Center"/>
-        <ComboBox Grid.Column="1" Grid.Row="5" Margin="5,5,10,5"
-              ItemsSource="{Binding FilmItems}"
-              DisplayMemberPath="Value"
-              SelectedValuePath="Key"
-              SelectedValue="{Binding Path=FilmID, Mode=TwoWay}" Padding="5"/>
-
+        <TextBox Grid.Column="1" Grid.Row="5" Margin="5,5,10,5" IsEnabled="False" Text="{Binding Path=FilmTytul, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Padding="5"/>
+        <Button Content="Wybierz Film" Grid.Column="2" Grid.Row="5" Margin="5,5,10,5" Command="{Binding ShowFilmy}"/>
+        
         <Label Grid.Column="0" Grid.Row="6" Margin="10,5,5,10" Content="Bilet" VerticalAlignment="Center"/>
-        <ComboBox Grid.Column="1" Grid.Row="6" Margin="5,5,10,10"
-        ItemsSource="{Binding BiletItems}"
-        DisplayMemberPath="Value"
-        SelectedValuePath="Key"
-        SelectedValue="{Binding Path=BiletID, Mode=TwoWay}" Padding="5"/>
-
+        <TextBox Grid.Column="1" Grid.Row="6" Margin="5,5,10,5" IsEnabled="False" Text="{Binding Path=BiletRodzaj, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Padding="5"/>
+        <Button Content="Wybierz Rodzaj Biletu" Grid.Column="2" Grid.Row="6" Margin="5,5,10,5" Command="{Binding ShowBilety}"/>
 
     </Grid>
 </local:JedenViewBase>

@@ -1,4 +1,6 @@
-﻿using MVVMFirma.Models.EntitiesForView;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Models.Entities;
+using MVVMFirma.Models.EntitiesForView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -48,6 +50,33 @@ namespace MVVMFirma.ViewModels
             {
                 List = new ObservableCollection<BiletForAllView>
                     (List.Where(item => item.FilmTytul != null && item.FilmTytul.StartsWith(FindTextBox)));
+            }
+        }
+        #endregion
+        #region Properties
+
+        private BiletForAllView _WybranyBiletForAllView;
+        public BiletForAllView WybranyBiletForAllView
+        {
+            get
+            {
+                return _WybranyBiletForAllView;
+            }
+            set
+            {
+                _WybranyBiletForAllView = value;
+                if (value != null)
+                {
+                    // Tworzymy nowy obiekt Bilet z danymi z widoku
+                    var bilet = new Bilet()
+                    {
+                        BiletID = value.BiletID,
+                        TypBiletu = value.TypBiletu
+                        // możesz dodać inne potrzebne właściwości
+                    };
+                    Messenger.Default.Send(bilet);
+                    OnRequestClose();
+                }
             }
         }
         #endregion

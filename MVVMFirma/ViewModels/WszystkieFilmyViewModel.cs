@@ -1,4 +1,5 @@
-﻿using MVVMFirma.Models.Entities;
+﻿using GalaSoft.MvvmLight.Messaging;
+using MVVMFirma.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -43,6 +44,27 @@ namespace MVVMFirma.ViewModels
                     (List.Where(item => item.Tytul != null && item.Tytul.StartsWith(FindTextBox)));
             }
         }
+        #endregion
+        #region Command
+
+        #endregion
+        #region Properties
+        private Film _WybranyFilm;
+        public Film WybranyFilm
+        { 
+            get 
+            { 
+                return _WybranyFilm;
+            
+            }
+            set 
+            {
+                _WybranyFilm = value;
+                Messenger.Default.Send(_WybranyFilm);
+                OnRequestClose();
+            }
+        }
+
         #endregion
         public override void Load()
         {
