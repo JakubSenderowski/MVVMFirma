@@ -40,98 +40,98 @@ namespace MVVMFirma.ViewModels
             {
                 new CommandViewModel(
                     "Towary",
-                    new BaseCommand(() => this.ShowAllTowar())),
+                    new BaseCommand(() => this.ShowAllTowar()),"pack://application:,,,/Ikony/testowy.png"), //Aplication - zasób wbudowany w aplikację a te trzy to, że odwołuje się do zasoby w tym samym projekcie.
 
                 new CommandViewModel(
                     "Towar",
-                    new BaseCommand(() => this.CreateTowar())),
+                    new BaseCommand(() => this.CreateTowar()), "pack://application:,,,/Ikony/testowy.png"),
                  new CommandViewModel(
                     "Faktury",
-                    new BaseCommand(() => this.ShowAllFaktury())),
+                    new BaseCommand(() => this.ShowAllFaktury()), "pack://application:,,,/Ikony/faktura.png"),
                   new CommandViewModel(
                     "Faktura",
-                    new BaseCommand(() => this.CreateFaktura())),
+                    new BaseCommand(() => this.CreateFaktura()), "pack://application:,,,/Ikony/faktura.png"),
                   new CommandViewModel(
                     "Film",
-                    new BaseCommand(() => this.CreateFilm())),
+                    new BaseCommand(() => this.CreateFilm()), "pack://application:,,,/Ikony/film.png"),
                   new CommandViewModel(
                     "Filmy",
-                    new BaseCommand(() => this.ShowAllFilmy())),
+                    new BaseCommand(() => this.ShowAllFilmy()), "pack://application:,,,/Ikony/film.png"),
                   new CommandViewModel(
                     "Bilet",
-                    new BaseCommand(() => this.CreateBilet())),
+                    new BaseCommand(() => this.CreateBilet()), "pack://application:,,,/Ikony/bilety.png"),
                   new CommandViewModel(
                     "Bilety",
-                    new BaseCommand(() => this.ShowAllBilety())),
+                    new BaseCommand(() => this.ShowAllBilety()),  "pack://application:,,,/Ikony/bilety.png"),
                   new CommandViewModel(
                     "Klient",
-                    new BaseCommand(() => this.CreateKlient())),
+                    new BaseCommand(() => this.CreateKlient()),  "pack://application:,,,/Ikony/klient.png"),
                   new CommandViewModel(
                     "Klienci",
-                    new BaseCommand(() => this.ShowAllKlienci())),
+                    new BaseCommand(() => this.ShowAllKlienci()),  "pack://application:,,,/Ikony/klient.png"),
                   new CommandViewModel(
                     "Promocja",
-                    new BaseCommand(() => this.CreatePromocja())),
+                    new BaseCommand(() => this.CreatePromocja()),  "pack://application:,,,/Ikony/promocja.png"),
                   new CommandViewModel(
                     "Promocje",
-                    new BaseCommand(() => this.ShowAllFPromocje())),
+                    new BaseCommand(() => this.ShowAllFPromocje()),  "pack://application:,,,/Ikony/promocja.png"),
                   new CommandViewModel(
                     "Recenzja",
-                    new BaseCommand(() => this.CreateRecenzja())),
+                    new BaseCommand(() => this.CreateRecenzja()), "pack://application:,,,/Ikony/recenzje.png"),
                   new CommandViewModel(
                     "Recenzje",
-                    new BaseCommand(() => this.ShowAllRecenzje())),
+                    new BaseCommand(() => this.ShowAllRecenzje()), "pack://application:,,,/Ikony/recenzje.png"),
                   new CommandViewModel(
                     "Rezerwacja",
-                    new BaseCommand(() => this.CreateRezerwacja())),
+                    new BaseCommand(() => this.CreateRezerwacja()) , "pack://application:,,,/Ikony/rezerwacja.png"),
                   new CommandViewModel(
                     "Rezerwacje",
-                    new BaseCommand(() => this.ShowAllRezerwacje())),
+                    new BaseCommand(() => this.ShowAllRezerwacje()) , "pack://application:,,,/Ikony/rezerwacja.png"),
                   new CommandViewModel(
                     "Repertuar",
-                    new BaseCommand(() => this.CreateRepertuar())),
+                    new BaseCommand(() => this.CreateRepertuar()) , "pack://application:,,,/Ikony/repertuar.png"),
                   new CommandViewModel(
                     "Repertuary",
-                    new BaseCommand(() => this.ShowAllRepertuary())),
+                    new BaseCommand(() => this.ShowAllRepertuary())     , "pack://application:,,,/Ikony/repertuar.png"),
                   new CommandViewModel(
                     "Dostawca",
-                    new BaseCommand(() => this.CreateDostawca())),
+                    new BaseCommand(() => this.CreateDostawca()) , "pack://application:,,,/Ikony/dostawca.png"),
                   new CommandViewModel(
                     "Dostawcy",
-                    new BaseCommand(() => this.ShowAllDostawcy())),
+                    new BaseCommand(() => this.ShowAllDostawcy()) , "pack://application:,,,/Ikony/dostawca.png"),
                   new CommandViewModel(
                     "Kontrahent",
-                    new BaseCommand(() => this.CreateKontrahent())),
+                    new BaseCommand(() => this.CreateKontrahent()) , "pack://application:,,,/Ikony/kontrahent.png"),
                   new CommandViewModel(
                     "Kontrahenci",
-                    new BaseCommand(() => this.ShowAllKontrahenci())),
+                    new BaseCommand(() => this.ShowAllKontrahenci()) , "pack://application:,,,/Ikony/kontrahent.png"),
                   new CommandViewModel(
                     "Sala",
-                    new BaseCommand(() => this.CreateSala())),
+                    new BaseCommand(() => this.CreateSala()) , "pack://application:,,,/Ikony/sale.png"),
                   new CommandViewModel(
                     "Sale",
-                    new BaseCommand(() => this.ShowAllSale())),
+                    new BaseCommand(() => this.ShowAllSale()) , "pack://application:,,,/Ikony/sale.png"),
                   new CommandViewModel(
                     "Statystyka",
-                    new BaseCommand(() => this.CreateStatystyka())),
+                    new BaseCommand(() => this.CreateStatystyka()),  "pack://application:,,,/Ikony/statystyki.png"),
                   new CommandViewModel(
                     "Statystyki",
-                    new BaseCommand(() => this.ShowAllStatystyki())),
+                    new BaseCommand(() => this.ShowAllStatystyki()), "pack://application:,,,/Ikony/statystyki.png"),
                   new CommandViewModel(
                     "Domowienie",
-                    new BaseCommand(() => this.CreateDomowienie())),
+                    new BaseCommand(() => this.CreateDomowienie()),  "pack://application:,,,/Ikony/domowienie.png"),
                   new CommandViewModel(
                     "Domowienia",
-                    new BaseCommand(() => this.ShowAllDomowienia())),
+                    new BaseCommand(() => this.ShowAllDomowienia()), "pack://application:,,,/Ikony/domowienie.png"),
                   new CommandViewModel(
                     "Raport Sprzedazy",
-                    new BaseCommand(() => this.CreateRaportSprzedazy())),
+                    new BaseCommand(() => this.CreateRaportSprzedazy()),  "pack://application:,,,/Ikony/raporty.png"),
                   new CommandViewModel(
                     "Raport Sprzedazy Towarow",
-                    new BaseCommand(() => this.CreateRaportSprzedazyTowarow())),
+                    new BaseCommand(() => this.CreateRaportSprzedazyTowarow()), "pack://application:,,,/Ikony/raporty.png"),
                   new CommandViewModel(
                     "Raport Promocji",
-                    new BaseCommand(() => this.CreateRaportPromocji())),
+                    new BaseCommand(() => this.CreateRaportPromocji()),  "pack://application:,,,/Ikony/raporty.png"),
 
 
 

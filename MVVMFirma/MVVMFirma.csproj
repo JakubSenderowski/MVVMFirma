@@ -496,6 +496,21 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Ikony\testowy.png" />
+    <Resource Include="Ikony\bilety.png" />
+    <Resource Include="Ikony\domowienie.png" />
+    <Resource Include="Ikony\dostawca.png" />
+    <Resource Include="Ikony\faktura.png" />
+    <Resource Include="Ikony\film.png" />
+    <Resource Include="Ikony\klient.png" />
+    <Resource Include="Ikony\promocja.png" />
+    <Resource Include="Ikony\raporty.png" />
+    <Resource Include="Ikony\recenzje.png" />
+    <Resource Include="Ikony\repertuar.png" />
+    <Resource Include="Ikony\rezerwacja.png" />
+    <Resource Include="Ikony\sale.png" />
+    <Resource Include="Ikony\statystyki.png" />
+    <Resource Include="Ikony\kontrahent.png" />
     <Content Include="Models\Entities\ModelKino.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>ModelKino.Context.cs</LastGenOutput>

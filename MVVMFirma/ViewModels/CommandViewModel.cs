@@ -9,18 +9,21 @@ namespace MVVMFirma.ViewModels
     public class CommandViewModel : BaseViewModel
     {
         #region Properties
-        public ICommand Command { get; private set; }
+        public string DisplayName { get; }  // Nazwa komendy do wyświetlenia
+        public ICommand Command { get; }    // Komenda do wykonania
+        public string Icon { get; }         // Ścieżka do ikony
         #endregion
 
         #region Constructor
-        public CommandViewModel(string displayName, ICommand command)
+        public CommandViewModel(string displayName, ICommand command, string icon = null)
         {
             if (command == null)
-                throw new ArgumentNullException("command");
-            this.DisplayName = displayName;
-            this.Command = command;
+                throw new ArgumentNullException(nameof(command)); // Poprawna forma użycia ArgumentNullException
+
+            DisplayName = displayName;
+            Command = command;
+            Icon = icon; // Może być null, jeśli ikona nie jest wymagana
         }
         #endregion
-
     }
 }

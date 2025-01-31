@@ -162,18 +162,24 @@
   side in the main window (the 'Control Panel' area).
   -->
     <DataTemplate x:Key="CommandsTemplate">
-        <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="6,2">
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <TextBlock Margin="2,6">
-            <Hyperlink Command="{Binding Path=Command}">
-              <TextBlock Text="{Binding Path=DisplayName}" />
-            </Hyperlink>
-          </TextBlock>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <ItemsControl IsTabStop="False" ItemsSource="{Binding}" Margin="6,2">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="2,6">
+                            <Image Source="{Binding Icon}" Width="36" Height="36" Margin="0,0,5,0"/>
+                            <TextBlock>
+                            <Hyperlink Command="{Binding Path=Command}">
+                                <TextBlock Text="{Binding Path=DisplayName}" />
+                            </Hyperlink>
+                        </TextBlock>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
     </DataTemplate>
+
 
     <!-- 
   This template explains how to render 

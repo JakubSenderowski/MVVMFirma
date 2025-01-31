@@ -203,7 +203,7 @@ namespace MVVMFirma.ViewModels
 
         public override bool IsValid()
         {
-            if (this["Rabat"] == null)
+            if (this["Rabat"] == null) 
                 return true;
             else
                 return false;

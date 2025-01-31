@@ -53,6 +53,7 @@ namespace MVVMFirma.ViewModels
             }
         }
         #endregion
+        //Nauczyć się dlaczego akurat tak.
         #region Properties
 
         private BiletForAllView _WybranyBiletForAllView;
@@ -64,8 +65,8 @@ namespace MVVMFirma.ViewModels
             }
             set
             {
-                _WybranyBiletForAllView = value;
-                if (value != null)
+                _WybranyBiletForAllView = value; // Zapisujemy sobie tutaj wybrany bilet (widoczek)
+                if (value != null) //Sprawdzenie czy coś zostało wybrane <---
                 {
                     // Tworzymy nowy obiekt Bilet z danymi z widoku
                     var bilet = new Bilet()
